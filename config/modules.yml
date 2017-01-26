@@ -37,7 +37,7 @@ java:
 python:
   name: Deploying Python Code
 python-github:
-  name: Deploying Python Code from GitHub
+  name: Deploying Python Code
 databases:
   name: Adding a Database (MongoDB)
 #  requires:
