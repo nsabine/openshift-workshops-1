@@ -1,0 +1,34 @@
+name: OpenShift DevConf 2017 Workshop
+logo: devconf.png
+vars:
+  DOWNLOAD_CLIENT_WINDOWS: "https://github.com/openshift/origin/releases/download/v1.4.1/openshift-origin-client-tools-v1.4.1-3f9807a-linux-64bit.tar.gz"
+  DOWNLOAD_CLIENT_MAC: "https://github.com/openshift/origin/releases/download/v1.4.1/openshift-origin-client-tools-v1.4.1-3f9807a-mac.zip"
+  DOWNLOAD_CLIENT_LIN32: "https://github.com/openshift/origin/releases/download/v1.4.1/openshift-origin-client-tools-v1.4.1-3f9807a-linux-32bit.tar.gz"
+  DOWNLOAD_CLIENT_LIN64: "https://github.com/openshift/origin/releases/download/v1.4.1/openshift-origin-client-tools-v1.4.1-3f9807a-linux-64bit.tar.gz"
+  ENVIRONMENT: "Google Cloud Platform"
+  CONSOLE_ADDRESS: "console.pixie.io:8443"
+  USER_NAME: "userXXX"
+  USER_PASSWORD: "**********"
+  EXPLORE_PROJECT_NAME: "user"
+  USER_SUFFIX: "XXX"
+  ROUTER_ADDRESS: "apps.console.pixie.io"
+  METRICS_ENABLED: false
+  OPENSHIFT_NAME: "OpenShift Origin"
+  OPENSHIFT_SHORTNAME: "OCO"
+  OPENSHIFT_VERSION: "1.4"
+  DOCS_URL: "openshift.github.io"
+  
+modules:
+  activate:
+    - install
+    - explore
+    - parksmap-architecture
+    - docker
+    - scaling
+    - routes
+    - python
+    - databases-py
+    - application-health
+    - codechanges
+    - templates
+  
