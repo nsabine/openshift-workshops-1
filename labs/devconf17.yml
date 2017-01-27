@@ -17,6 +17,12 @@ vars:
   OPENSHIFT_SHORTNAME: "OCO"
   OPENSHIFT_VERSION: "1.4.1"
   OC_VERSION: "1.4.1"
+  PARKSMAP_IMAGENAME: "parksmap-py"
+  PARKSMAP_VERSION: "1.0.0"
+  PARKSMAP_PY: true
+  NATIONALPARKS_VERSION: "1.0.0"
+  MLBPARKS_VERSION: "1.0.0"
+
   DOCS_URL: "openshift.github.io"
   
 modules:
