@@ -9,7 +9,7 @@ vars:
   CONSOLE_ADDRESS: "console.devconf.pixy.io:8443"
   USER_NAME: "userXXX"
   USER_PASSWORD: "**********"
-  EXPLORE_PROJECT_NAME: "user"
+  EXPLORE_PROJECT_NAME: "userXXX-parks"
   USER_SUFFIX: "XXX"
   ROUTER_ADDRESS: "apps.console.devconf.pixy.io"
   METRICS_ENABLED: false
