@@ -16,6 +16,7 @@ vars:
   OPENSHIFT_NAME: "OpenShift Origin"
   OPENSHIFT_SHORTNAME: "OCO"
   OPENSHIFT_VERSION: "1.4.1"
+  OC_VERSION: "1.4.1"
   DOCS_URL: "openshift.github.io"
   
 modules:
