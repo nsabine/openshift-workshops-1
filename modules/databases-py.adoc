@@ -212,7 +212,7 @@ The application provides an endpoint to do just that:
 
 [source]
 ----
-http://nationalparks-{{EXPLORE_PROJECT_NAME}}{{USER_SUFFIX}}.{{ROUTER_ADDRESS}}/ws/data/load
+http://nationalparks-userXXX-parks.apps.devconf.pixy.io/ws/data/load
 ----
 
 And the result?
@@ -234,11 +234,7 @@ for application portability across different environments.  The source file that
 performs the connection as well as creates the database schema can be viewed
 here:
 
-{% if PARKSMAP_PY %}
-http://{{GITLAB_URL_PREFIX}}.{{ROUTER_ADDRESS}}/{{GITLAB_USER}}/nationalparks-py/blob/{{NATIONALPARKS_VERSION}}/wsgi.py#L11-18[http://{{GITLAB_URL_PREFIX}}.{{ROUTER_ADDRESS}}/{{GITLAB_USER}}/nationalparks-py/blob/{{NATIONALPARKS_VERSION}}/wsgi.py]
-{% else %}
-http://{{GITLAB_URL_PREFIX}}.{{ROUTER_ADDRESS}}/{{GITLAB_USER}}/nationalparks/blob/{{NATIONALPARKS_VERSION}}/src/main/java/org/openshift/parks/mongo/DBConnection.java[DBConnection.java]
-{% endif %}
+https://github.com/openshift-roadshow/nationalparks-py/blob/1.0.0/wsgi.py#L11-18
 
 In short summary: By referring to environment variables to connect to services
 (like databases), it can be trivial to promote applications throughout different
@@ -251,7 +247,7 @@ variables] section of the Developer Guide.
 
 [source]
 ----
-http://parksmap-{{EXPLORE_PROJECT_NAME}}{{USER_SUFFIX}}.{{ROUTER_ADDRESS}}
+http://http://parksmap-py-userXXX-parks.apps.devconf.pixy.io
 ----
 
 Hmm... There's just one thing. The main map **STILL** isn't displaying the parks.
@@ -309,11 +305,12 @@ oc label route nationalparks type=parksmap-backend
 route "nationalparks" labeled
 ----
 
+
 If you check your browser now:
 
 [source]
 ----
-http://parksmap-{{EXPLORE_PROJECT_NAME}}{{USER_SUFFIX}}.{{ROUTER_ADDRESS}}/
+http://parksmap-py-userXXX-parks.apps.devconf.pixy.io
 ----
 
 image::/images/parksmap-new-parks.png[MongoDB]

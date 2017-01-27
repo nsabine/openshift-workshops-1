@@ -33,6 +33,7 @@ modules:
     - docker
     - scaling
     - routes
+    - permissions
     - python-github
     - databases-py
     - application-health
