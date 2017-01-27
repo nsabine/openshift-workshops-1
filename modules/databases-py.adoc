@@ -43,7 +43,7 @@ persistent storage!). The image will ensure that:
 - A user exists with the specified name
 - The user can access the specified database with the specified password
 
-In the web console in your `{{EXPLORE_PROJECT_NAME}}{{USER_SUFFIX}}` project, again click the *"Add to
+In the web console in your `userXXX-parks` project, again click the *"Add to
 Project"* button, and then find the `mongodb-ephemeral` template, and click it.
 You will notice that there are several MongoDB templates available, some of
 which come with application servers pre-configured. We just need a database,
@@ -194,7 +194,7 @@ service to query for data:
 
 [source]
 ----
-http://nationalparks-{{EXPLORE_PROJECT_NAME}}{{USER_SUFFIX}}.{{ROUTER_ADDRESS}}/ws/data/all
+http://nationalparks-userXXX-parks.apps.devconf.pixy.io/ws/data/all
 ----
 
 And the result?
