@@ -299,7 +299,7 @@ action, issue the following command:
 
 [source]
 ----
-oc describe service parksmap
+oc describe service parksmap-py
 ----
 
 You should see something like the following output:
