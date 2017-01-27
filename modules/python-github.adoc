@@ -65,8 +65,8 @@ and located at the following URL:
 https://github.com/openshift-roadshow/nationalparks-py.git
 
 
-Later in the lab, we want you to make a code change and then rebuild your
-application. In order to accomplish this, you will need to fork the repository above to your own github account.
+**Later in the labs, we want you to make a code change and then rebuild your
+application. In order to accomplish this, you will need to fork the repository above to your own github account.**
 
 This is a fairly simple Python application.
 
