@@ -10,7 +10,7 @@ image::/images/roadshow-app-architecture-nationalparks-1.png[Application archite
 
 In a previous lab, we learned how to deploy a pre-existing Docker-formatted
 image. Now we will expand on that a bit by learning how OpenShift builds a
-Docker images using source code from an existing repository.
+Docker image using source code from an existing repository.
 
 https://github.com/openshift/source-to-image[Source-to-Image (S2I)] is another
 open source project sponsored by Red Hat. Its goal:
@@ -50,7 +50,7 @@ places.
 #### Add to Project
 Because the `nationalparks` application is a back-end to serve data that our
 existing front-end will consume, we are going to build it inside the existing
-`{{EXPLORE_PROJECT_NAME}}{{USER_SUFFIX}}` project. And, we will do it from the web console.
+`userXXX-parks` project. And, we will do it from the web console.
 
 #### Using application code from GitHub
 
@@ -76,10 +76,10 @@ While the `new-app` command makes it very easy to get OpenShift to build code
 from a GitHub/GitLab repository into a Docker image, we can also use the web console to
 do the same thing. Similar to how we used "Add to project" before with a
 Docker-formatted image, we can do the same for specifying a source code
-repository. Since for this lab you have your own GitLab repository let's use it with
+repository. Since for this lab you have your own GitHub repository let's use it with
 a simple Python S2I image.
 
-In the OpenShift web console, find your `{{EXPLORE_PROJECT_NAME}}{{USER_SUFFIX}}` project, and then
+In the OpenShift web console, find your `userXXX-parks` project, and then
 click the *"Add to Project"* button. You will see a number of runtimes that you
 can choose from, but you will want to select the one titled
 `python:3.5`.
@@ -102,24 +102,6 @@ NOTE: All of these runtimes shown are made available via *Templates* and
 
 image::/images/new-national-parks-1-py.png[Runtimes]
 
-These labs were written against specific points in time for these
-applications. With Git as our version control system (VCS), we are using the
-concept of *Branches/Tags*. Click on *Show advanced routing, build, and deployment
-options*. In the *Git Reference* field enter "1.0.0". This will cause the S2I
-process to grab that specific tag in the code repository.
-
-image::/images/nationalparks-tag-py.png[Runtimes]
-
-{% if USE_MAVEN %}
-
-To speed build process, a Sonatype Nexus server is running in the environment
-that will cache your dependencies as you pull them down. To use it, you need to
-scroll down to *Build Configuration* and add an environment variable named
-*MAVEN_MIRROR_URL* with value
-`http://nexus.workshop-infra.svc.cluster.local:8081/content/groups/public`
-
-image::/images/new-national-parks-2.png[Runtimes]
-{% endif %}
 
 You can then hit the button labeled *"Create"*. Then click *Continue to
 overview*. You will see this in the web console:
@@ -187,15 +169,15 @@ Where you should see something like the following:
 [source]
 ----
 NAME            HOST/PORT                                                   PATH      SERVICES        PORT       TERMINATION
-nationalparks   nationalparks-{{EXPLORE_PROJECT_NAME}}{{USER_SUFFIX}}.{{ROUTER_ADDRESS}}             nationalparks   8080-tcp
-parksmap        parksmap-{{EXPLORE_PROJECT_NAME}}{{USER_SUFFIX}}.{{ROUTER_ADDRESS}}                  parksmap        8080-tcp
+nationalparks   nationalparks-userXXX-parks.apps.devconf.pixy.io             nationalparks   8080-tcp
+parksmap        parksmap-userXXX-parks.apps.devconf.pixy.io                  parksmap        8080-tcp
 ----
 
 In the above example, the URL is:
 
 [source]
 ----
-http://nationalparks-{{EXPLORE_PROJECT_NAME}}{{USER_SUFFIX}}.{{ROUTER_ADDRESS}}
+http://nationalparks-userXXX-parks.apps.devconf.pixy.io
 ----
 
 Since this is a back-end application, it doesn't actually have a web interface.
@@ -205,7 +187,7 @@ complete URL to enter in your browser is:
 
 [source]
 ----
-http://nationalparks-{{EXPLORE_PROJECT_NAME}}{{USER_SUFFIX}}.{{ROUTER_ADDRESS}}/ws/info/
+http://nationalparks-userXXX-parks.apps.devconf.pixy.io/ws/info/
 ----
 
 WARNING: The trailing slash is *required*.
