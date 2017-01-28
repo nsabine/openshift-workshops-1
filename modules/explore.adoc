@@ -10,7 +10,7 @@ want to authenticate to.  Issue the following command:
 
 [source]
 ----
-$ oc login https://console.devconf.pixi.io:8443
+$ oc login https://console.devconf.pixy.io:8443
 ----
 
 You may see the following output:
