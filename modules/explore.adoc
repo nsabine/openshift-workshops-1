@@ -10,7 +10,7 @@ want to authenticate to.  Issue the following command:
 
 [source]
 ----
-$ oc login {{CONSOLE_ADDRESS}}
+$ oc login https://console.devconf.pixi.io:8443
 ----
 
 You may see the following output:
@@ -74,7 +74,7 @@ their content in isolation from other communities. Each project has its own
 resources, policies (who can or cannot perform actions), and constraints (quotas
 and limits on resources, etc). Projects act as a "wrapper" around all the
 application services and endpoints you (or your teams) are using for your work.
-For this first lab, we are going to use a project named *smoke* that has been
+For this first lab, we are going to create a project named *userXXX-parks* that has been
 created and populated with an application for you.
 
 During this lab, we are going to use a few different commands to make sure that
