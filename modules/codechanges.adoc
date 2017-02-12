@@ -11,7 +11,7 @@ achieved.
 #### Exercise: Configuring GitHub Web Hooks
 
 
-In the OpenShift web console, navigate to your `userXXX-parks` *Project*, and
+In the OpenShift web console, navigate to your `USERNAME-parks` *Project*, and
 then mouse-over *Browse* and then *Builds*. Click the `nationalparks` build.
 
 On this screen you will see the option to copy the *github* webhook URL as shown
@@ -43,11 +43,11 @@ webhook will fail.
 Finally, click on "Add webhook".
 
 
-Boom! From now on, every time you commit new source code to your GitLab
+Boom! From now on, every time you commit new source code to your GitHub
 repository, a new build and deploy will occur inside of OpenShift.  Let's try
 this out.
 
-#### Exercise: Using GitLab Web Hooks
+#### Exercise: Using GitHub Web Hooks
 
 {% if PARKSMAP_PY %}
 
@@ -75,8 +75,8 @@ To
 
 {% else %}
 
-Click "Project" at the top of the GitLab page, and then "Files" towards the
-middle of the page. This is GitLab's repository view. Navigate to the following
+Click "Project" at the top of the GitHub page, and then "Files" towards the
+middle of the page. This is GitHub's repository view. Navigate to the following
 path:
 
 [source]
@@ -152,7 +152,7 @@ automatically deployed by viewing the application in your browser:
 
 [source]
 ----
-http://nationalparks-userXXX-parks.apps.devconf.pixy.io/ws/info
+http://nationalparks-USERNAME-parks.apps.xxxxxxx.pixy.io/ws/info
 ----
 
 You should now see the new name you have set in the JSON string returned.
@@ -200,7 +200,7 @@ original header by viewing the application in your browser.
 
 [source]
 ----
-http://nationalparks-userXXX-parks.apps.devconf.pixy.io/ws/info
+http://nationalparks-USERNAME-parks.apps.xxxxxx.pixy.io/ws/info
 ----
 
 [NOTE]

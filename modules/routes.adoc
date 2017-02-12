@@ -57,7 +57,7 @@ Verify the *Route* was created with the following command:
 ----
 $ oc get route
 NAME       HOST/PORT                                              PATH      SERVICES   PORT       TERMINATION
-parksmap-py   parksmap-py-userXXX-apps.devconf.pixy.io             parksmap   8080-tcp
+parksmap-py   parksmap-py-USERNAME-apps.xxxxxxx.pixy.io             parksmap   8080-tcp
 ----
 
 You can also verify the *Route* by looking at the project in the OpenShift web console:

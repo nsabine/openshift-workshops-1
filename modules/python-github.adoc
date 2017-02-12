@@ -50,7 +50,7 @@ places.
 #### Add to Project
 Because the `nationalparks` application is a back-end to serve data that our
 existing front-end will consume, we are going to build it inside the existing
-`userXXX-parks` project. And, we will do it from the web console.
+`USERNAME-parks` project. And, we will do it from the web console.
 
 #### Using application code from GitHub
 
@@ -79,7 +79,7 @@ Docker-formatted image, we can do the same for specifying a source code
 repository. Since for this lab you have your own GitHub repository let's use it with
 a simple Python S2I image.
 
-In the OpenShift web console, find your `userXXX-parks` project, and then
+In the OpenShift web console, find your `USERNAME-parks` project, and then
 click the *"Add to Project"* button. You will see a number of runtimes that you
 can choose from, but you will want to select the one titled
 `python:3.5`.
@@ -169,15 +169,15 @@ Where you should see something like the following:
 [source]
 ----
 NAME            HOST/PORT                                                   PATH      SERVICES        PORT       TERMINATION
-nationalparks   nationalparks-userXXX-parks.apps.devconf.pixy.io             nationalparks   8080-tcp
-parksmap        parksmap-py-userXXX-parks.apps.devconf.pixy.io                  parksmap        8080-tcp
+nationalparks   nationalparks-USERANME-parks.apps.xxxxxxx.pixy.io             nationalparks   8080-tcp
+parksmap        parksmap-py-USERNAME-parks.apps.xxxxxxxx.pixy.io                  parksmap        8080-tcp
 ----
 
 In the above example, the URL is:
 
 [source]
 ----
-http://nationalparks-userXXX-parks.apps.devconf.pixy.io
+http://nationalparks-USERNAME-parks.apps.xxxxxxx.pixy.io
 ----
 
 Since this is a back-end application, it doesn't actually have a web interface.
@@ -187,7 +187,7 @@ complete URL to enter in your browser is:
 
 [source]
 ----
-http://nationalparks-userXXX-parks.apps.devconf.pixy.io/ws/info/
+http://nationalparks-USERNAME-parks.apps.xxxxxxx.pixy.io/ws/info/
 ----
 
 WARNING: The trailing slash is *required*.

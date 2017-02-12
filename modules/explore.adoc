@@ -10,8 +10,13 @@ want to authenticate to.  Issue the following command:
 
 [source]
 ----
-$ oc login https://console.devconf.pixy.io:8443
+$ oc login https://console.HOSTNAME.pixy.io:8443
 ----
+
+[NOTE]
+====
+Replace HOSTNAME in the above URL with the correct value provided to you by the instructor of this session.
+====
 
 You may see the following output:
 
@@ -37,7 +42,7 @@ the following command:
 
 [source]
 ----
-$ oc login {{CONSOLE_ADDRESS}} --insecure-skip-tls-verify=true
+$ oc login https://console.HOSTNAME.pixy.io:8443 --insecure-skip-tls-verify=true
 ----
 ====
 
@@ -46,8 +51,8 @@ password combination for your user account:
 
 [source]
 ----
-Username: {{USER_NAME}}
-Password: {{USER_PASSWORD}}
+Username: the username provided to you by the instructor
+Password: the password provided to you by the instructor
 ----
 
 Once you have authenticated to the OpenShift server, you will see the
@@ -84,16 +89,21 @@ understand all of the terminology as we will cover it in detail in later labs.
 The first thing we want to do is to create a new project called *userXXX-parks*. You
 can do this with the following command:
 
+[NOTE]
+====
+Replace the USERNAME in the following command with your actual username!
+====
+
 [source]
 ----
-$ oc new-project userXXX-parks
+$ oc new-project USERNAME-parks
 ----
 
 You will see the following confirmation message:
 
 [source]
 ----
-Now using project userXXX-parks on server "https://{{CONSOLE_ADDRESS}}".
+Now using project USERNAME-parks on server "https://{{CONSOLE_ADDRESS}}".
 ----
 
 ### The Web Console
@@ -108,8 +118,8 @@ The first screen you will see is the authentication screen.  Enter in the follow
 
 [source]
 ----
-Username: {{USER_NAME}}
-Password: {{USER_PASSWORD}}
+Username: the username provided to you by the instructor
+Password: the password provided to you by the instructor
 ----
 
 image::/images/ocp-login.png[OpenShift Login Screen]
@@ -120,8 +130,8 @@ something that looks like the following image:
 
 image::/images/explore-webconsole1.png[Web Console]
 
-Click on the *userXXX-parks* project. When you click on the
-*userXXX-parks* project, you will be taken to the project overview page
+Click on the *USERNAME-parks* project. When you click on the
+*USERNAME-parks* project, you will be taken to the project overview page
 which will list all of the routes, services, deployments, and pods that you have
 running as part of your project. There's nothing there now, but that's about to
 change.

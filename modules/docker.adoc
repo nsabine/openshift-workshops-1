@@ -16,7 +16,7 @@ Return to the web console:
 
 *link:https://{{CONSOLE_ADDRESS}}[]*
 
-Find your *userXXX-parks* project and click it. Next, click "Add to
+Find your *USERNAME-parks* project and click it. Next, click "Add to
 project" at the top of the screen.
 
 There are several options, but we are only concerned with "Deploy Image". Click
