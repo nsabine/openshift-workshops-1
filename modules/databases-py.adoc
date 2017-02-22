@@ -194,7 +194,7 @@ service to query for data:
 
 [source]
 ----
-http://nationalparks-userXXX-parks.apps.devconf.pixy.io/ws/data/all
+http://nationalparks-userXXX-parks.apps.pixy.io/ws/data/all
 ----
 
 And the result?
@@ -212,7 +212,7 @@ The application provides an endpoint to do just that:
 
 [source]
 ----
-http://nationalparks-userXXX-parks.apps.devconf.pixy.io/ws/data/load
+http://nationalparks-userXXX-parks.apps.pixy.io/ws/data/load
 ----
 
 And the result?
@@ -247,7 +247,7 @@ variables] section of the Developer Guide.
 
 [source]
 ----
-http://http://parksmap-py-userXXX-parks.apps.devconf.pixy.io
+http://http://parksmap-py-userXXX-parks.apps.pixy.io
 ----
 
 Hmm... There's just one thing. The main map **STILL** isn't displaying the parks.
@@ -310,7 +310,7 @@ If you check your browser now:
 
 [source]
 ----
-http://parksmap-py-userXXX-parks.apps.devconf.pixy.io
+http://parksmap-py-userXXX-parks.apps.pixy.io
 ----
 
 image::/images/parksmap-new-parks.png[MongoDB]

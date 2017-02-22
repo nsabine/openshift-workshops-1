@@ -7,8 +7,7 @@ requires going through the master's API. All API interactions are both
 authenticated (AuthN - who are you?) and authorized (AuthZ - are you allowed to
 do what you are asking?).
 
-In the log aggregation lab we saw that there was an error in reference to a
-*Service Account*. Just like a user has permissions (AuthZ), sometimes we may
+Just like a user has permissions (AuthZ), sometimes we may
 wish for non-users to be able to perform actions against the API. These
 "non-users" are referred to as service accounts.
 
