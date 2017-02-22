@@ -39,7 +39,8 @@ and etc. -- which we will learn about later.
 
 {% if PARKSMAP_PY %}
 
-For now, change the application name:
+Set the *Name* field used to identify resources created by this deployment to
+be `parksmap`.
 
 image::/images/parksmap-image-options.png[Explore Project]
 
@@ -200,7 +201,7 @@ You should see output similar to the following:
 [source]
 ----
 NAME       CLUSTER-IP       EXTERNAL-IP   PORT(S)    AGE
-parksmap-py   172.30.169.213   <none>        8080/TCP   3h
+parksmap   172.30.169.213   <none>        8080/TCP   3h
 ----
 
 In the above output, we can see that we have a *Service* named `parksmap` with an
@@ -216,7 +217,7 @@ following command to display the data in YAML:
 
 [source]
 ----
-oc get service parksmap-py -o yaml
+oc get service parksmap -o yaml
 ----
 
 You should see output similar to the following:
@@ -255,7 +256,7 @@ Take note of the `selector` stanza. Remember it.
 
 It is also of interest to view the JSON of the *Pod* to understand how OpenShift
 wires components together.  For example, run the following command to get the
-name of your `parksmap-py` *Pod*:
+name of your `parksmap` *Pod*:
 
 [source]
 ----
@@ -267,14 +268,14 @@ You should see output similar to the following:
 [source]
 ----
 NAME               READY     STATUS    RESTARTS   AGE
-parksmap-py-1-hx0kv   1/1       Running   0          3h
+parksmap-1-hx0kv   1/1       Running   0          3h
 ----
 
 Now you can view the detailed data for your *Pod* with the following command:
 
 [source]
 ----
-oc get pod parksmap-py-1-hx0kv -o yaml
+oc get pod parksmap-1-hx0kv -o yaml
 ----
 
 Under the `metadata` section you should see the following:
@@ -299,7 +300,7 @@ action, issue the following command:
 
 [source]
 ----
-oc describe service parksmap-py
+oc describe service parksmap
 ----
 
 You should see something like the following output:

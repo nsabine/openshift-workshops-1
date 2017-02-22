@@ -152,7 +152,7 @@ has finished (exited) and that an application *Pod* is in a ready and running st
 NAME                    READY     STATUS      RESTARTS   AGE
 nationalparks-1-tkid3   1/1       Running     3          2m
 nationalparks-1-build   0/1       Completed   0          3m
-parksmap-py-1-4hbtk        1/1       Running     0          2h
+parksmap-1-4hbtk        1/1       Running     0          2h
 ----
 
 If you look again at the web console, you will notice that, when you create the
@@ -170,7 +170,7 @@ Where you should see something like the following:
 ----
 NAME            HOST/PORT                                                   PATH      SERVICES        PORT       TERMINATION
 nationalparks   nationalparks-USERANME-parks.apps.xxxxxxx.pixy.io             nationalparks   8080-tcp
-parksmap        parksmap-py-USERNAME-parks.apps.xxxxxxxx.pixy.io                  parksmap        8080-tcp
+parksmap        parksmap-USERNAME-parks.apps.xxxxxxxx.pixy.io                  parksmap        8080-tcp
 ----
 
 In the above example, the URL is:

@@ -247,7 +247,7 @@ variables] section of the Developer Guide.
 
 [source]
 ----
-http://http://parksmap-py-userXXX-parks.apps.pixy.io
+http://http://parksmap-userXXX-parks.apps.pixy.io
 ----
 
 Hmm... There's just one thing. The main map **STILL** isn't displaying the parks.
@@ -310,7 +310,7 @@ If you check your browser now:
 
 [source]
 ----
-http://parksmap-py-userXXX-parks.apps.pixy.io
+http://parksmap-userXXX-parks.apps.pixy.io
 ----
 
 image::/images/parksmap-new-parks.png[MongoDB]
