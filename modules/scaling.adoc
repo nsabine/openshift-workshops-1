@@ -42,7 +42,7 @@ OpenShift to stand up the `parksmap` image:
 oc get dc
 
 NAME       REVISION   DESIRED   CURRENT   TRIGGERED BY
-parksmap-py   1          1         1         config,image(parksmap:{{PARKSMAP_VERSION}})
+parksmap   1          1         1         config,image(parksmap:{{PARKSMAP_VERSION}})
 ----
 
 To get more details, we can look into the *ReplicationController* (*RC*).
@@ -55,7 +55,7 @@ you told OpenShift to stand up the `parksmap` image:
 oc get rc
 
 NAME         DESIRED   CURRENT   READY     AGE
-parksmap-py-1   1         1         0         4h
+parksmap-1   1         1         0         4h
 ----
 
 This lets us know that, right now, we expect one *Pod* to be deployed
@@ -76,7 +76,7 @@ the *Pod* in the OpenShift web console on the overview page. It's your choice.
 
 [source]
 ----
-oc scale --replicas=2 dc/parksmap-py
+oc scale --replicas=2 dc/parksmap
 ----
 
 To verify that we changed the number of replicas, issue the following command:
@@ -86,7 +86,7 @@ To verify that we changed the number of replicas, issue the following command:
 oc get rc
 
 NAME         DESIRED   CURRENT   READY     AGE
-parksmap-py-1   2         2         0         4h
+parksmap-1   2         2         0         4h
 ----
 
 You can see that we now have 2 replicas. Let's verify the number of pods with
@@ -97,8 +97,8 @@ the `oc get pods` command:
 oc get pods
 
 NAME               READY     STATUS    RESTARTS   AGE
-parksmap-py-1-8g6lb   1/1       Running   0          1m
-parksmap-py-1-hx0kv   1/1       Running   0          4h
+parksmap-1-8g6lb   1/1       Running   0          1m
+parksmap-1-hx0kv   1/1       Running   0          4h
 ----
 
 And lastly, let's verify that the *Service* that we learned about in the
@@ -106,7 +106,7 @@ previous lab accurately reflects two endpoints:
 
 [source]
 ----
-oc describe svc parksmap-py
+oc describe svc parksmap
 ----
 
 You will see something like the following output:
@@ -129,7 +129,7 @@ Another way to look at a *Service*'s endpoints is with the following:
 
 [source]
 ----
-oc get endpoints parksmap-py
+oc get endpoints parksmap
 ----
 
 And you will see something like the following:
@@ -137,7 +137,7 @@ And you will see something like the following:
 [source]
 ----
 NAME       ENDPOINTS                                   AGE
-parksmap-py   10.1.0.5:8080,10.1.1.5:8080                 4h
+parksmap   10.1.0.5:8080,10.1.1.5:8080                 4h
 ----
 
 Your IP addresses will likely be different, as each pod receives a unique IP
@@ -165,7 +165,7 @@ name. Then, do the following:
 
 [source]
 ----
-oc delete pod parksmap-py-1-hx0kv
+oc delete pod parksmap-1-hx0kv
 ----
 
 Then, as fast as you can, do the following:
