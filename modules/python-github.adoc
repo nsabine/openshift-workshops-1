@@ -92,7 +92,7 @@ the Git repository URL, enter:
 
 [source]
 ----
-https://github.com/openshift-roadshow/nationalparks-py.git
+https://github.com/YOURusernameForGitHub/nationalparks-py.git
 ----
 
 NOTE: **Use the version and URL for the repository that you forked, not the exact one above!!!**
