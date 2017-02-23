@@ -32,7 +32,7 @@ Then:
 oc policy add-role-to-user view -z default
 ----
 
-The `oc policy` command above is giving a defined _role_ (`view`) to a user. But
+The `oc policy` command above is giving a defined _role_ (`view`) to a user, in this case the project default user. But
 we are using a special flag, `-z`. What does this flag do? From the `-h` output:
 
 [source]
