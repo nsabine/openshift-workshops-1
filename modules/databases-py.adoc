@@ -313,7 +313,7 @@ If you check your browser now:
 
 [source]
 ----
-http://parksmap-userXXX-parks.apps.pixy.io
+http://parksmap-userXXX-parks.apps.gshipley.pixy.io
 ----
 
 image::/images/parksmap-new-parks.png[MongoDB]
