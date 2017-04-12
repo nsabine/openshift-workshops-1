@@ -194,7 +194,7 @@ service to query for data:
 
 [source]
 ----
-http://nationalparks-userXXX-parks.apps.pixy.io/ws/data/all
+http://nationalparks-userXXX-parks.apps.gshipley.pixy.io/ws/data/all
 ----
 
 And the result?
@@ -212,7 +212,7 @@ The application provides an endpoint to do just that:
 
 [source]
 ----
-http://nationalparks-userXXX-parks.apps.pixy.io/ws/data/load
+http://nationalparks-userXXX-parks.apps.gshipley.pixy.io/ws/data/load
 ----
 
 And the result?
@@ -245,9 +245,12 @@ https://docs.openshift.org/latest/dev_guide/environment_variables.html[environme
 variables] section of the Developer Guide.
 ====
 
+
+Now that we have added the database and loaded the database, let's take a look at the parks map application.
+
 [source]
 ----
-http://parksmap-userXXX-parks.apps.pixy.io
+http://parksmap-userXXX-parks.apps.gshipley.pixy.io
 ----
 
 Hmm... There's just one thing. The main map **STILL** isn't displaying the parks.
