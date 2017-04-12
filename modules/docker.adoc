@@ -180,7 +180,7 @@ available to the "outside world", or anything that is outside the OpenShift
 environment. That's OK, as you will learn later.
 
 The way that a *Service* maps to a set of *Pods* is via a system of *Labels* and
-*Selectors*. *Services* are assigned an eternal IP address and many ports and
+*Selectors*. *Services* are assigned an permanent IP address and many ports and
 protocols can be mapped.
 
 There is a lot more information about
