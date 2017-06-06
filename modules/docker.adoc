@@ -99,7 +99,7 @@ You should see output that looks similar to:
 [source]
 ----
 NAME               READY     STATUS    RESTARTS   AGE
-parksmap-1-hx0kv   1/1       Running   0          2m
+parksmap-py-1-hx0kv   1/1       Running   0          2m
 ----
 
 The above output lists all of the *Pods* in the current *Project*, including the
@@ -112,7 +112,7 @@ NOTE: Make sure you use the correct *Pod* name from your output.
 
 [source]
 ----
-oc get pod parksmap-1-hx0kv -o yaml
+oc get pod parksmap-py-1-hx0kv -o yaml
 ----
 
 You should see something like the following output (which is have truncated due
@@ -127,17 +127,17 @@ metadata:
     kubernetes.io/created-by: |
       {"kind":"SerializedReference","apiVersion":"v1","reference":{"kind":"ReplicationController","namespace":"{{EXPLORE_PROJECT_NAME}}{{USER_SUFFIX}}","name":"parksmap-1","uid":"b5ae65e9-897e-11e6-bdaa-2cc2602f8794","apiVersion":"v1","resourceVersion":"6924"}}
     openshift.io/deployment-config.latest-version: "1"
-    openshift.io/deployment-config.name: parksmap
-    openshift.io/deployment.name: parksmap-1
+    openshift.io/deployment-config.name: parksmap-py
+    openshift.io/deployment.name: parksmap-py-1
     openshift.io/generated-by: OpenShiftWebConsole
     openshift.io/scc: restricted
   creationTimestamp: 2016-10-03T15:33:29Z
-  generateName: parksmap-1-
+  generateName: parksmap-py-1-
   labels:
-    app: parksmap
-    deployment: parksmap-1
-    deploymentconfig: parksmap
-  name: parksmap-1-hx0kv
+    app: parksmap-py
+    deployment: parksmap-py-1
+    deploymentconfig: parksmap-py
+  name: parksmap-py-1-hx0kv
 ...............
 ----
 
@@ -200,11 +200,11 @@ You should see output similar to the following:
 
 [source]
 ----
-NAME       CLUSTER-IP       EXTERNAL-IP   PORT(S)    AGE
-parksmap   172.30.169.213   <none>        8080/TCP   3h
+NAME          CLUSTER-IP       EXTERNAL-IP   PORT(S)    AGE
+parksmap-py   172.30.169.213   <none>        8080/TCP   3h
 ----
 
-In the above output, we can see that we have a *Service* named `parksmap` with an
+In the above output, we can see that we have a *Service* named `parksmap-py` with an
 IP/Port combination of 172.30.169.213/8080TCP. Your IP address may be different, as
 each *Service* receives a unique IP address upon creation. *Service* IPs are
 eternal and never change for the life of the *Service*.
@@ -217,7 +217,7 @@ following command to display the data in YAML:
 
 [source]
 ----
-oc get service parksmap -o yaml
+oc get service parksmap-py -o yaml
 ----
 
 You should see output similar to the following:
@@ -231,11 +231,11 @@ metadata:
     openshift.io/generated-by: OpenShiftWebConsole
   creationTimestamp: 2016-10-03T15:33:17Z
   labels:
-    app: parksmap
-  name: parksmap
+    app: parksmap-py
+  name: parksmap-py
   namespace: {{EXPLORE_PROJECT_NAME}}{{USER_SUFFIX}}
   resourceVersion: "6893"
-  selfLink: /api/v1/namespaces/{{EXPLORE_PROJECT_NAME}}{{USER_SUFFIX}}/services/parksmap
+  selfLink: /api/v1/namespaces/{{EXPLORE_PROJECT_NAME}}{{USER_SUFFIX}}/services/parksmap-py
   uid: b51260a9-897e-11e6-bdaa-2cc2602f8794
 spec:
   clusterIP: 172.30.169.213
@@ -245,7 +245,7 @@ spec:
     protocol: TCP
     targetPort: 8080
   selector:
-    deploymentconfig: parksmap
+    deploymentconfig: parksmap-py
   sessionAffinity: None
   type: ClusterIP
 status:
@@ -275,7 +275,7 @@ Now you can view the detailed data for your *Pod* with the following command:
 
 [source]
 ----
-oc get pod parksmap-1-hx0kv -o yaml
+oc get pod parksmap-py-1-hx0kv -o yaml
 ----
 
 Under the `metadata` section you should see the following:
@@ -283,16 +283,16 @@ Under the `metadata` section you should see the following:
 [source]
 ----
 labels:
-  app: parksmap
-  deployment: parksmap-1
-  deploymentconfig: parksmap
+  app: parksmap-py
+  deployment: parksmap-py-1
+  deploymentconfig: parksmap-py
 ----
 
 * The *Service* has `selector` stanza that refers to `deploymentconfig=parksmap`.
 * The *Pod* has multiple *Labels*:
-** `deploymentconfig=parksmap`
+** `deploymentconfig=parksmap`-py
 ** `app=parksmap`
-** `deployment=parksmap-1`
+** `deployment=parksmap-py-1`
 
 *Labels* are just key/value pairs. Any *Pod* in this *Project* that has a *Label* that
 matches the *Selector* will be associated with the *Service*. To see this in
@@ -300,17 +300,17 @@ action, issue the following command:
 
 [source]
 ----
-oc describe service parksmap
+oc describe service parksmap-py
 ----
 
 You should see something like the following output:
 
 [source]
 ----
-Name:                   parksmap
+Name:                   parksmap-py
 Namespace:              {{EXPLORE_PROJECT_NAME}}{{USER_SUFFIX}}
-Labels:                 app=parksmap
-Selector:               deploymentconfig=parksmap
+Labels:                 app=parksmap-py
+Selector:               deploymentconfig=parksmap-py
 Type:                   ClusterIP
 IP:                     172.30.169.213
 Port:                   8080-tcp        8080/TCP
