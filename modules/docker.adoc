@@ -40,9 +40,9 @@ and etc. -- which we will learn about later.
 {% if PARKSMAP_PY %}
 
 Set the *Name* field used to identify resources created by this deployment to
-be `parksmap`.
+be `parksmap-py`.
 
-image::/images/parksmap-image-options.png[Explore Project]
+image::/images/parksmap-python-image-options.png[Explore Project]
 
 {% endif %}
 
@@ -50,7 +50,7 @@ Hit the blue "Create" button at the bottom of the screen and then click the
 "Continue to overview" link. Take a moment to look at the various messages that
 you now see on the overview page.
 
-WINNING! These few steps are the only ones you need to run to get a "vanilla"
+WINNING! These few steps are the only ones you need to run to get a
 Docker-formatted image deployed on OpenShift. This should work with any
 Docker-formatted image that follows best practices, such as defining an EXPOSE
 port, not needing to run specifically as the *root user* or other user name, and
