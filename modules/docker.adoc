@@ -256,7 +256,7 @@ Take note of the `selector` stanza. Remember it.
 
 It is also of interest to view the JSON of the *Pod* to understand how OpenShift
 wires components together.  For example, run the following command to get the
-name of your `parksmap` *Pod*:
+name of your `parksmap-py` *Pod*:
 
 [source]
 ----
@@ -268,7 +268,7 @@ You should see output similar to the following:
 [source]
 ----
 NAME               READY     STATUS    RESTARTS   AGE
-parksmap-1-hx0kv   1/1       Running   0          3h
+parksmap-py-1-hx0kv   1/1       Running   0          3h
 ----
 
 Now you can view the detailed data for your *Pod* with the following command:
@@ -288,10 +288,10 @@ labels:
   deploymentconfig: parksmap-py
 ----
 
-* The *Service* has `selector` stanza that refers to `deploymentconfig=parksmap`.
+* The *Service* has `selector` stanza that refers to `deploymentconfig=parksmap-py`.
 * The *Pod* has multiple *Labels*:
-** `deploymentconfig=parksmap`-py
-** `app=parksmap`
+** `deploymentconfig=parksmap-py`
+** `app=parksmap-py`
 ** `deployment=parksmap-py-1`
 
 *Labels* are just key/value pairs. Any *Pod* in this *Project* that has a *Label* that
