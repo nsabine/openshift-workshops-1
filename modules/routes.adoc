@@ -62,7 +62,7 @@ parksmap-py   parksmap-py-USERNAME-apps.xxxxxxx.pixy.io             parksmap-py 
 
 You can also verify the *Route* by looking at the project in the OpenShift web console:
 
-image::/images/-route.png[Route]
+image::/images/parksmap-route.png[Route]
 
 Pretty nifty, huh?  This application is now available at the above URL:
 
