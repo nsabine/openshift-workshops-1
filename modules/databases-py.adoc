@@ -3,7 +3,7 @@
 ### Application Description
 In this lab, we're going to deploy a Mongo database that will be used to store the data for the `nationalparks` application. We will also connect the `nationalparks` service with the newly deployed Mongo database, so that the `nationalparks` service can load and query the database for the corresponding information.
 
-Finally, we will mark the `nationalparks` application as a backend for the map visualization tool, so that it can be dynamically discovered by the `parksmap` component using the OpenShift discovery mechanism and the map will be displayed automatically.
+Finally, we will mark the `nationalparks` application as a backend for the map visualization tool, so that it can be dynamically discovered by the `parksmap-py` component using the OpenShift discovery mechanism and the map will be displayed automatically.
 
 image::/images/roadshow-app-architecture-nationalparks-2.png[Application architecture,800,align="center"]
 
@@ -166,7 +166,7 @@ can verify this by looking at the output of `oc get dc`:
 NAME            REVISION   DESIRED   CURRENT   TRIGGERED BY
 mongodb         1          1         1         config,image(mongodb:3.2)
 nationalparks   2          1         1         config,image(nationalparks:{{NATIONALPARKS_VERSION}})
-parksmap        1          1         1         config,image(parksmap:{{PARKSMAP_VERSION}})
+parksmap-py        1          1         1         config,image(parksmap-py:{{PARKSMAP_VERSION}})
 ----
 
 Something that increments the version of a *DeploymentConfiguration*, by default,
@@ -179,7 +179,7 @@ NAME              DESIRED   CURRENT   READY     AGE
 mongodb-1         1         1         0         24m
 nationalparks-1   0         0         0         3h
 nationalparks-2   1         1         0         8m
-parksmap-1        1         1         0         6h
+parksmap-py-1        1         1         0         6h
 ----
 
 We see that the desired and current number of instances for the "-1" deployment
@@ -250,7 +250,7 @@ Now that we have added the database and loaded the database, let's take a look a
 
 [source]
 ----
-http://parksmap-userXXX-parks.apps.gshipley.pixy.io
+http://parksmap-py-userXXX-parks.apps.gshipley.pixy.io
 ----
 
 Hmm... There's just one thing. The main map **STILL** isn't displaying the parks.
@@ -313,7 +313,7 @@ If you check your browser now:
 
 [source]
 ----
-http://parksmap-userXXX-parks.apps.gshipley.pixy.io
+http://parksmap-py-userXXX-parks.apps.gshipley.pixy.io
 ----
 
 image::/images/parksmap-new-parks.png[MongoDB]
