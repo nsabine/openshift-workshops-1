@@ -12,7 +12,8 @@ achieved.
 
 
 In the OpenShift web console, navigate to your `USERNAME-parks` *Project*, and
-then mouse-over *Browse* and then *Builds*. Click the `nationalparks` build.
+then mouse-over *Builds* and then *Builds* again. Click the `nationalparks` build.
+Finally, click on the 'Configuration' tab.
 
 On this screen you will see the option to copy the *github* webhook URL as shown
 in the following image:
