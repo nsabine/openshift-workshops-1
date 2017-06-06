@@ -35,27 +35,27 @@ or a *Service*, and others, so feel free to ask us about them after the labs.
 Now that we know the background of what a *ReplicatonController* and
 *DeploymentConfig* are, we can explore how they work and are related. Take a
 look at the *DeploymentConfig* (DC) that was created for you when you told
-OpenShift to stand up the `parksmap` image:
+OpenShift to stand up the `parksmap-py` image:
 
 [source]
 ----
 oc get dc
 
 NAME       REVISION   DESIRED   CURRENT   TRIGGERED BY
-parksmap   1          1         1         config,image(parksmap:{{PARKSMAP_VERSION}})
+parksmap-py   1          1         1         config,image(parksmap-py:{{PARKSMAP_VERSION}})
 ----
 
 To get more details, we can look into the *ReplicationController* (*RC*).
 
 Take a look at the *ReplicationController* (RC) that was created for you when
-you told OpenShift to stand up the `parksmap` image:
+you told OpenShift to stand up the `parksmap-py` image:
 
 [source]
 ----
 oc get rc
 
 NAME         DESIRED   CURRENT   READY     AGE
-parksmap-1   1         1         0         4h
+parksmap-py-1   1         1         0         4h
 ----
 
 This lets us know that, right now, we expect one *Pod* to be deployed
@@ -70,13 +70,13 @@ https://{{DOCS_URL}}/latest/dev_guide/pod_autoscaling.html[Horizontal Pod Autosc
 
 ### Exercise: Scaling the Application
 
-Let's scale our parksmap "application" up to 2 instances. We can do this with
+Let's scale our parksmap-py "application" up to 2 instances. We can do this with
 the `scale` command. You could also do this by clicking the "up" arrow next to
 the *Pod* in the OpenShift web console on the overview page. It's your choice.
 
 [source]
 ----
-oc scale --replicas=2 dc/parksmap
+oc scale --replicas=2 dc/parksmap-py
 ----
 
 To verify that we changed the number of replicas, issue the following command:
@@ -86,7 +86,7 @@ To verify that we changed the number of replicas, issue the following command:
 oc get rc
 
 NAME         DESIRED   CURRENT   READY     AGE
-parksmap-1   2         2         0         4h
+parksmap-py-1   2         2         0         4h
 ----
 
 You can see that we now have 2 replicas. Let's verify the number of pods with
@@ -97,8 +97,8 @@ the `oc get pods` command:
 oc get pods
 
 NAME               READY     STATUS    RESTARTS   AGE
-parksmap-1-8g6lb   1/1       Running   0          1m
-parksmap-1-hx0kv   1/1       Running   0          4h
+parksmap-py-1-8g6lb   1/1       Running   0          1m
+parksmap-py-1-hx0kv   1/1       Running   0          4h
 ----
 
 And lastly, let's verify that the *Service* that we learned about in the
@@ -106,17 +106,17 @@ previous lab accurately reflects two endpoints:
 
 [source]
 ----
-oc describe svc parksmap
+oc describe svc parksmap-py
 ----
 
 You will see something like the following output:
 
 [source]
 ----
-Name:			parksmap
+Name:			parksmap-py
 Namespace:		{{EXPLORE_PROJECT_NAME}}{{USER_SUFFIX}}
-Labels:			app=parksmap
-Selector:		deploymentconfig=parksmap
+Labels:			app=parksmap-py
+Selector:		deploymentconfig=parksmap-py
 Type:			ClusterIP
 IP:			172.30.169.213
 Port:			8080-tcp	8080/TCP
@@ -129,7 +129,7 @@ Another way to look at a *Service*'s endpoints is with the following:
 
 [source]
 ----
-oc get endpoints parksmap
+oc get endpoints parksmap-py
 ----
 
 And you will see something like the following:
@@ -137,7 +137,7 @@ And you will see something like the following:
 [source]
 ----
 NAME       ENDPOINTS                                   AGE
-parksmap   10.1.0.5:8080,10.1.1.5:8080                 4h
+parksmap-py   10.1.0.5:8080,10.1.1.5:8080                 4h
 ----
 
 Your IP addresses will likely be different, as each pod receives a unique IP
@@ -146,7 +146,7 @@ many pods are behind a service.
 
 You can also see that both *Pods* are running using the web console:
 
-image::/images/parksmap-scaled.png[Scaling]
+image::/images/parksmap-py-scaled.png[Scaling]
 
 Overall, that's how simple it is to scale an application (*Pods* in a
 *Service*). Application scaling can happen extremely quickly because OpenShift
@@ -165,7 +165,7 @@ name. Then, do the following:
 
 [source]
 ----
-oc delete pod parksmap-1-hx0kv
+oc delete pod parksmap-py-1-hx0kv
 ----
 
 Then, as fast as you can, do the following:
@@ -186,7 +186,7 @@ insufficient, OpenShift also allows you to run a command inside the container in
 order to perform the check. That command could be a complicated script that uses
 any installed language.
 
-Based on these health checks, if OpenShift decided that our `parksmap`
+Based on these health checks, if OpenShift decided that our `parksmap-py`
 application instance wasn't alive, it would kill the instance and then restart
 it, always ensuring that the desired number of replicas was in place.
 
