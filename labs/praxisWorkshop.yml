@@ -27,7 +27,7 @@ vars:
   
 modules:
   activate:
-    - install
+    - environment
     - explore
     - parksmap-architecture
     - docker

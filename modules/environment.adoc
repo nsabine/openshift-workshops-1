@@ -1,26 +1,30 @@
-## Lab: Environment Overview
+## Environment Overview
 
-You will be interacting with an OpenShift environment that is running on {{ENVIRONMENT}}. The environment consists of the following systems:
+image::/images/environment-diagram.png[Environment Diagram,800,align="center"]
 
-* {{MASTERS}} master nodes
-* {{INFRA}} infrastructure nodes
-* {{NODES}} "application" nodes
-{% if NFS_ENABLED %}
-* An NFS server
-{% endif %}
 
-The infrastructure node is providing several services:
+Today's workshop infrastructure is being run on {{ENVIRONMENT}}. Each student will be assigned a single instance to use.  Your student number will be substituted where you see this `${student#}`. Example: if you are student 21:
+`http://workshop.21.rhtps.io`
 
-{% if LOGGING_ENABLED %}
-* Aggregated logging
-{% endif %}
-{% if METRICS_ENABLED %}
-* Cluster metrics
-{% endif %}
-* GitLab
-* This lab manual
-* The OpenShift Docker registry
-* The OpenShift router
+If you do not know your user number, please make sure you figure that out with your instructor.
 
-Additionally, 100 user accounts have been provisioned. If you do not know your
-user number, please make sure you figure that out with your instructor.
+== Workshop Infrastructure
+
+Each student's personal EC2 lab is equipped with the following:
+
+*  t2.large EC2 Instance (2 vCPU, 8 GB RAM)
+** _All nodes are running Red Hat Enterprise Linux 7.3_
+*  Web-based console access:
+** https://workshop.${student#}.rhtps.io:8888/wetty/ssh/ec2-user
+*  A directory containing all files used in this workshop.
+
+== Setup Your Environment
+
+Before we can begin deploying containerized applications, we've got to get a few basics out of the way. Namely... ssh access to your instance.
+
+[IMPORTANT]
+Be sure you can log in to your instance.  If you can't log in start shouting, loudly, and waving your hands!
+
+== End Result
+
+At this point, everyone should have logged into your node.  If you haven't, let us know so we can get you fixed up.
