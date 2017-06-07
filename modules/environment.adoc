@@ -15,7 +15,7 @@ Each student's personal EC2 lab is equipped with the following:
 *  t2.large EC2 Instance (2 vCPU, 8 GB RAM)
 ** _All nodes are running Red Hat Enterprise Linux 7.3_
 *  Web-based console access:
-** https://workshop.${student#}.rhtps.io:8888/wetty/ssh/ec2-user
+** https://workshop.`${student#}`.rhtps.io:8888/wetty/ssh/ec2-user
 *  A directory containing all files used in this workshop.
 
 == Setup Your Environment
