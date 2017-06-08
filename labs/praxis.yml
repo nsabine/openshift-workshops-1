@@ -34,3 +34,4 @@ modules:
     - scaling
     - kernel-capabilities
     - selinux
+    - atomic-scan
