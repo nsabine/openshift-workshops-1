@@ -1,4 +1,4 @@
- ## Atomic Scan
+## Atomic Scan
 
 image::/images/atomic-scan.png[Atomic Scan,800,align="center"]
 
@@ -87,9 +87,9 @@ The atomic scanner was designed with a pluggable architecture to allow
 developers to write custom scanners using any programming language supported by
 RHEL. Adding a scanner plugin involves the following:
 
-- Make atomic aware of your plug­in.
-- Ensure the plugin obtains the proper input from the / scanin directory.
-- Ensure the plugin writes the results to the  /scanout directory.
+- Make atomic aware of your plug in.
+- Ensure the plugin obtains the proper input from the /scanin directory.
+- Ensure the plugin writes the results to the /scanout directory.
 
 .cd  into `/home/ec2-user/workshopfiles`
 [source]
@@ -134,8 +134,7 @@ Now lets try the get rpms scan
 .rpm-list
 [source]
 ----
-sudo atomic scan --scanner example_plugin --scan_type=rpm-list
-registry.access.redhat.com/rhel7.3
+sudo atomic scan --scanner example_plugin --scan_type=rpm-list registry.access.redhat.com/rhel7.3
 ----
 
 == Additional Fun
@@ -169,7 +168,7 @@ scans: [
 ]
 ----
 
-So you can see that as long as you package up the scanner code in the container
+So you can see that as long as you package up the scanner code in the container 
 and adhere to the api it should be easy to add your own custom scanner.
 
 https://developers.redhat.com/blog/2016/05/20/creating-a-custom-atomic-scan-plug-in/#more-421256[Creating a custom atomic scan plugin]
