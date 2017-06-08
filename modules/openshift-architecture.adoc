@@ -1,4 +1,4 @@
-:backend: reveal.js
+:backend: revealjs
 
 = OpenShift Architecture Overview
 
