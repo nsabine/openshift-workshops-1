@@ -104,7 +104,7 @@ class Application < Sinatra::Base
       case
         when File.exists?(filename)
           src = File.read(filename)
-          options = { attributes: { 'icons' => 'font', 'backend' => 'revealjs' } }
+          options = { attributes: { 'icons' => 'font' }, backend => 'revealjs' }
           adoc = Asciidoctor::Document.new(process_template(mod, revision, src), options)
           [src, adoc.render]
         else
