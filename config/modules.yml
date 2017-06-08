@@ -1,9 +1,5 @@
 openshift-architecture:
   name: OpenShift Architecture Overview
-deploy-openshift:
-  name: Deploy OpenShift Container Platform
-simple-python:
-  name: Deploy a Simple Application
 environment:
   name: Lab Environment Overview
 install:
@@ -22,12 +18,16 @@ install:
         DOWNLOAD_CLIENT_LIN32: <lin link>
         DOWNLOAD_CLIENT_LIN64: <lim link>
         OC_VERSION: <status>
+deploy-openshift:
+  name: Deploy OpenShift Container Platform
 explore:
   name: Exploring the CLI and Web Console
 parksmap-architecture:
   name: Architecture Overview of the ParksMap Application
 docker:
   name: Deploying our First Docker Image
+simple-python:
+  name: Deploy a Simple Application
 scaling:
   name: Scaling
 routes:
