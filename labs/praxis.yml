@@ -36,3 +36,4 @@ modules:
     - selinux
     - atomic-scan
     - s2i-overview
+    - codechanges

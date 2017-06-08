@@ -1,4 +1,4 @@
-## Lab: Making Code Changes and using webhooks
+## Making Code Changes and Using Webhooks
 
 ### Background: Web Hooks
 Most Git repository servers support the concept of web hooks -- calling to an
@@ -8,11 +8,43 @@ remote systems in order to trigger builds. By pointing the code repository's
 hook at the OpenShift API, automated code/build/deploy pipelines can be
 achieved.
 
+#### Exercise: Fork an Example App
+
+In this lab, we're going to make a change to an app.  To do that, we need to 
+fork an exising codebase so we have write permissions to the git repo.
+
+In your web browser, sign in to GitHub and naviate to the 
+https://github.com/openshift/nodejs-ex[NodeJS Example].
+
+image:://images/github-nodejs-example.png[NodeJS Example,800,align="center"]
+
+click on Fork:
+
+image:://images/github-fork.png[Fork,800,align="center"]
+
+
+#### Exercise: Deploy Your App
+
+Now let's create a new project and deploy our app:
+
+.Create a New Project
+[source]
+----
+oc new-project webhooks
+----
+
+.Deploy the App
+[source]
+----
+oc new-app https://github.com/<YOUR USENAME>/nodejs-ex 
+----
+
+
 #### Exercise: Configuring GitHub Web Hooks
 
 
-In the OpenShift web console, navigate to your `USERNAME-parks` *Project*, and
-then mouse-over *Builds* and then *Builds* again. Click the `nationalparks` build.
+In the OpenShift web console, navigate to your `webhook` *Project*, and
+then click *Builds* and then *Builds* again. Click the `nodejs-ex` build.
 Finally, click on the 'Configuration' tab.
 
 On this screen you will see the option to copy the *github* webhook URL as shown
