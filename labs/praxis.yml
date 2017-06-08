@@ -37,3 +37,5 @@ modules:
     - atomic-scan
     - s2i-overview
     - codechanges
+    - ci-cd-overview
+    - pipelines

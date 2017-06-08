@@ -1,9 +1,9 @@
 ## Lab: Automating Deployment with CI/CD Pipeline
 
 ### Background: CI/CD Pipeline
-Continuous Integration and Continuous Deployment refer to a set of practises with
+Continuous Integration and Continuous Deployment refer to a set of practices with
 the intention of automating various aspects of delivery software. One of these
-practises is Pipeline which is an automated process to define the steps a change
+practices is Pipeline, which is an automated process to define the steps a change
 in code or configuration has to go through in order to reach upper environments
 such as staging and production. OpenShift supports CI/CD Pipelines by integrating
 the popular https://jenkins.io/doc/book/pipeline/overview/[Jenkins pipelines] into
