@@ -106,7 +106,7 @@ class Application < Sinatra::Base
       case
         when File.exists?(filename)
           src = File.read(filename)
-          options = { attributes: { 'icons' => 'font' }, backend: 'deckjs', template_dirs: 'asciidoctor-deck.js/templates/haml' }
+          options = { attributes: { 'icons' => 'font' }, backend: 'deckjs', template_dirs: new File('asciidoctor-deck.js/templates/haml') }
           adoc = Asciidoctor::Document.new(process_template(mod, revision, src), options)
           [src, adoc.render]
         else
