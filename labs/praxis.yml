@@ -30,6 +30,7 @@ modules:
     - openshift-architecture
     - environment
     - deploy-openshift
+    - simple-python
     - explore
     - parksmap-architecture
     - docker
