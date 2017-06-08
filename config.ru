@@ -2,6 +2,8 @@ require 'sinatra/base'
 
 require 'asciidoctor'
 require 'asciidoctor-revealjs'
+require 'tilt'
+require 'haml'
 require 'liquid'
 
 require 'yaml'
