@@ -29,6 +29,7 @@ modules:
   activate:
     - openshift-architecture
     - environment
+    - deploy-openshift
     - explore
     - parksmap-architecture
     - docker

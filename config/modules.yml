@@ -1,5 +1,7 @@
 openshift-architecture:
   name: OpenShift Architecture Overview
+deploy-openshift:
+  name: Deploy OpenShift Container Platform
 environment:
   name: Lab Environment Overview
 install:
