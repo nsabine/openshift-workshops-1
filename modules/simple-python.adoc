@@ -1,0 +1,81 @@
+## Deploy a Simple App
+
+image::/images/openshift-ocp.svg[OpenShift,800,align="center"]
+
+*Launch your first application.*
+
+.see which user you are authenticated as
+[source]
+----
+oc whoami
+----
+
+You should be logged in as `developer`
+
+Create a new
+https://docs.openshift.com/container-platform/3.5/architecture/core_concepts/projects_and_users.html[Project]
+for your first app.
+
+.create new project
+[source]
+----
+oc new-project flask --description="Python Flask App" --display-name="Flask App"
+----
+
+Now use the `new-app` command to create the new app from a simple Python flask
+repository on GitHub. By using the `--strategy=source` we can pass it the type
+of container to build and launch the app. In this case we are using
+`python:3.3`.
+
+.create the app
+[source]
+----
+oc new-app --strategy=source python:3.3~https://github.com/RedHatGov/DC17-Flask --name=dc17-flask
+----
+
+Now follow the logs as its being built.
+
+.follow the logs
+[source]
+----
+oc logs -f bc/dc17-flask
+----
+
+*Open a browser next to the terminal so you can see the app get created*
+
+=== Step 3:
+
+*Login to OpenShift*
+
+.Login as developer
+[source]
+----
+Username:  developer
+
+Password:  developer
+----
+
+.OpenShift Main Login
+image::/images/openshift-login.png[Login,800,align="center"]
+
+Click on the new project you created `Flask App`.
+
+.Flask App
+image::/images/openshift-flask-project.png[Flask Project,800,align="center"]
+
+Now we need to create a
+https://docs.openshift.com/container-platform/3.5/architecture/core_concepts/routes.html[`route`]
+to see the app.
+
+Click `Create Route` in the top right corner. Accept the defaults and click `create`.
+
+.create route
+image::/images/openshift-flask-create-route.png[Create Route,800,align="center"]
+
+Now lets see your first app. Click the new route. It should look similar to
+this `http://dc17-flask-flask.apps.ose.0.rhtps.io`.
+
+image::/images/openshift-flask-route.png[Flask Route,800,align="center"]
+
+Congratulations! You have launched your first app in OpenShift!
+
