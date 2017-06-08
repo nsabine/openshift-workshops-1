@@ -1,6 +1,6 @@
-:backend: revealjs
-
 = OpenShift Architecture Overview
+Nick Sabine
+:backend: revealjs
 
 == Slide One
 
