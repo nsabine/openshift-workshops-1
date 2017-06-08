@@ -1,0 +1,3 @@
+[submodule "asciidoctor-deck.js"]
+	path = /asciidoctor-deck.js
+	url = git://github.com/asciidoctor/asciidoctor-deck.js.git
