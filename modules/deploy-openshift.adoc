@@ -33,11 +33,11 @@ mkdir /data
 Next use the following command to bring up the cluster on your local machine.
 
 [IMPORTANT]
-But first! export your student number to sync up with the wildcard DNS mapped
+But first, export your student number to sync up with the wildcard DNS mapped
 to your instance. For example below, if you are student `0` then `export
 STUDENT=0`.
 
-.DO NOT CUT AND PASTE THIS, ok you can but change the number
+.DO NOT CUT AND PASTE THIS!! Ok you can, but change the number....
 [source]
 ----
 export STUDENT=0
