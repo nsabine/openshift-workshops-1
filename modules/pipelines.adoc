@@ -60,3 +60,32 @@ image::/images/jenkins-pipeline-edit.png[Jenkins Pipeline Edit]
 
 Here you can see the Jenkinsfile that is controlling the stages of the build.  This is a simple two-stage process:  Build, deploy.  As you can see, Jenkins is aware of the OpenShift primatives, and can invoke builds and deploys without complex syntax.
 
+
+
+### Exercise: Deploy Blue/Green Pipeline 
+
+Bonus round.  Let's deploy a more complex scenario.
+
+The `bluegreen-pipeline.yaml` template contains a pipeline that demonstrates alternating blue/green deployments with a manual approval step. The template contains three routes, one main route, and 2 other routes; one prefixed by blue and the other one prefixed by green. Each time the pipeline is run, it will alternate between building the green or the blue service. You can verify the running code by browsing to the route that was just built. Once the deployment is approved, then the service that was just built becomes the active one.
+
+To run this example:
+
+. Create a fork of https://github.com/openshift/nodejs-ex.git (you probably already did this)
+. Create a new project for your pipeline on the OpenShift web console:
+.. Login
+.. Click on New Project
+.. Enter a project name
+.. Click Create
+. In the Add to Project page, click on Import YAML/JSON
+. In a separate browser tab, navigate to https://raw.githubusercontent.com/openshift/origin/master/examples/jenkins/pipeline/bluegreen-pipeline.yaml[bluegreen-pipeline.yaml] and copy its content.
+. Paste the YAML text in the text box of the Import YAML/JSON tab.
+. Click on Create
+. Leave Process the template checked and click on Continue
+. Modify the Git Repository URL to contain the URL of your fork
+. Click on Create
+. Navigate to Builds -> Pipelines
+. Click on Start Pipeline next to bluegreen-pipeline
+. Once the code has been deployed, the pipeline will pause for your approval. Click on the pause icon to approve the deployment of the changes.
+. Push a change to your fork of the nodejs-ex repository
+. Start the pipeline again. Go back to step 11 and repeat.
+
