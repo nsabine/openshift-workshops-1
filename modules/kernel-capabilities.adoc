@@ -39,7 +39,7 @@ default 38 capabilities from root users running inside a container.*
 
 === Step 1:
 
-So, how can we drop these capabilities using docker? First, let’s see what
+So, how can we drop these capabilities using docker? First, let's see what
 capabilities a process has. There is a cool tool in Linux that can help you
 view what capabilities a process has called `pscap`, available in the
 `libcap-ng-utils` package on Fedora.
@@ -144,8 +144,8 @@ need to chown, allow the capability, do the work, then take it away.
 `*dac_override*`
 
 The man page says that dac_override allows root to bypass file read, write, and
-execute permission checks. DAC is an abbreviation of “discretionary access
-control”.
+execute permission checks. DAC is an abbreviation of "discretionary access
+control".
 
 This means a root capable process can read, write, and execute any file on the
 system, even if the permission and ownership fields would not allow it. Almost
@@ -154,16 +154,16 @@ wrong. There are probably less than ten in the whole distribution that actually
 need it. Of course the administrator shell could require DAC_OVERRIDE fixing
 bad permissions in the file system.
 
-Steve Grubb, security standards expert at Red Hat, says that “nothing should
-need this. If your container needs this, it’s probably doing something
-horrible.”
+Steve Grubb, security standards expert at Red Hat, says that "nothing should
+need this. If your container needs this, it's probably doing something
+horrible."
 
 `*fowner*`
 
 According to the man page, fowner conveys the ability to bypass permission
 checks on operations that normally require the filesystem UID of the process to
 match the UID of the file. For example, chmod and utime, and excludes
-operations covered by cap_dac_override and cap_dac_read_search. Here’s more
+operations covered by cap_dac_override and cap_dac_read_search. Here's more
 from the man page:
 
 set extended file attributes (see chattr(1)) on arbitrary files;
@@ -177,18 +177,18 @@ it should be blocked it when you run your container is production.
 
 `*fsetid*`
 
-The man page says “don’t clear set-user-ID and set-group-ID mode bits when a
+The man page says "don’t clear set-user-ID and set-group-ID mode bits when a
 file is modified; set the set-group-ID bit for a file whose GID does not match
-the filesystem or any of the supplementary GIDs of the calling process.”
+the filesystem or any of the supplementary GIDs of the calling process."
 
 My take: if you are not running an installation, you probably do not need this
 capability. I would disable this one by default.
 
 `*kill*`
 
-If a process has this capability it can override the restriction that “the real
+If a process has this capability it can override the restriction that "the real
 or effective user ID of a process sending a signal must match the real or
-effective user ID of the process receiving the signal.”
+effective user ID of the process receiving the signal."
 
 This capability basically means that a root owned process can send kill signals
 to non root processes. If your container is running all processes as root or
@@ -197,7 +197,7 @@ this capability. If you are running systemd as PID 1 inside of a container and
 you want to stop a container running with a different UID you might need this
 capability.
 
-It’s probably also worth mentioning on the danger scale, this one is on the low
+It's probably also worth mentioning on the danger scale, this one is on the low
 end.
 
 `*setgid*`
@@ -213,10 +213,10 @@ container processes do not change UIDs/GIDs, they do not need this capability.
 
 `*setuid*`
 
-If a process has the setuid capability it can “make arbitrary manipulations of
+If a process has the setuid capability it can "make arbitrary manipulations of
 process UIDs (setuid(2), setreuid(2), setresuid(2), setfsuid(2)); forge UID
 when passing socket credentials via UNIX domain sockets; write a user ID
-mapping in a user namespace (see user_namespaces(7)).”
+mapping in a user namespace (see user_namespaces(7))."
 
 A process with this capability can change its UID to any other UID. Basically,
 it allows full access to all files on the system. If your container processes
@@ -231,19 +231,19 @@ Most containers can safely drop setuid/setgid capability.
 
 `*setpcap*`
 
-Let’s look at the man page description: “Add any capability from the calling
-thread’s bounding set to its inheritable set; drop capabilities from the
+Let's look at the man page description: "Add any capability from the calling
+thread's bounding set to its inheritable set; drop capabilities from the
 bounding set (via prctl(2) PR_CAPBSET_DROP); make changes to the securebits
-flags.”
+flags."
 
-In layman’s terms, a process with this capability can change its current
+In layman's terms, a process with this capability can change its current
 capability set within its bounding set. Meaning a process could drop
 capabilities or add capabilities if it did not currently have them, but limited
 by the bounding set capabilities.
 
 `*net_bind_service*`
 
-This one’s easy. If you have this capability, you can bind to privileged ports
+This one's easy. If you have this capability, you can bind to privileged ports
 (e.g., those below 1024).
 
 If you want to bind to a port below 1024 you need this capability. If you are
@@ -257,10 +257,10 @@ container process to get to the public network interface
 
 `*net_raw*`
 
-The man page says, “allow use of RAW and PACKET sockets. Allow binding to any
-address for transparent proxying.”
+The man page says, "allow use of RAW and PACKET sockets. Allow binding to any
+address for transparent proxying."
 
-This access allows a process to spy on packets on its network. That’s bad,
+This access allows a process to spy on packets on its network. That's bad,
 right? Most container processes would not need this access so it probably
 should be dropped. Note this would only affect the containers that share the
 same network that your container process is running on, usually preventing

@@ -33,7 +33,7 @@ policy rule was added or configured to allow such access._
 
 === Step 1:
 
-In this section, we’ll cover the basics of SELinux and containers. SELinux
+In this section, we'll cover the basics of SELinux and containers. SELinux
 policy prevents a lot of break out situations where the other security
 mechanisms fail. With SELinux on Docker, we write policy that says that the
 container process running as `svirt_lxc_net_t` can only read/write files with
@@ -67,7 +67,7 @@ Current mode:                   enforcing
 sudo docker run --rm -v /tmp/selinux/data:/data fedora cat /data/file1.txt
 ----
 
-You can see the reason by inspecting the folder’s security context:
+You can see the reason by inspecting the folder's security context:
 
 [source]
 ----
@@ -76,7 +76,7 @@ ls -Z /tmp/selinux/data
 unconfined_u:object_r:user_tmp_t:s0 file1.txt
 ----
 
-The label for the data doesn’t match the label for containers. The fix is to
+The label for the data doesn't match the label for containers. The fix is to
 apply the container label to the data by using the `chcon` tool, effectively
 notifying the system that you expect these files to be consumed by containers:
 
@@ -143,7 +143,7 @@ and is based on the libvirt security policy.
 The libvirt security policy is a series of SELinux policies that defines two
 ways of isolating virtual machines. Generally, virtual machines are prevented
 from accessing parts of the network. Specifically, individual virtual machines
-are denied access to one another’s resources.
+are denied access to one another's resources.
 
 Red Hat extends the libvirt-SELinux model to Docker. The Docker SELinux role
 and Docker SELinux types are based on libvirt. For example, by default, Docker
@@ -151,7 +151,7 @@ has access to /usr/var/ and some other locations, but it has complete access to
 things that are labeled with svirt_sandbox_file_t.
 
 https://www.mankier.com/8/docker_selinux - this explains the entire Docker
-SELinux policy. It is not in layman’s terms, but it is complete.
+SELinux policy. It is not in layman's terms, but it is complete.
 
 `svirt_sandbox_file_t`
 
