@@ -44,6 +44,12 @@ capabilities a process has. There is a cool tool in Linux that can help you
 view what capabilities a process has called `pscap`, available in the
 `libcap-ng-utils` package on Fedora.
 
+.Install libcap-ng-utils
+[source]
+----
+sudo yum install -y libcap-ng-utils
+----
+
 .See current processes
 [source]
 ----
@@ -66,8 +72,7 @@ If I wanted to drop `setfcap`, `audit_write`, and `mknod`, I could use
 .Dropping setfcap, audit_write, mknod
 [source]
 ----
-sudo docker run -d --cap-drop=setfcap --cap-drop=audit_write --cap-drop=mknod
-fedora sleep 5 > /dev/null; pscap | grep sleep
+sudo docker run -d --cap-drop=setfcap --cap-drop=audit_write --cap-drop=mknod fedora sleep 5 > /dev/null; pscap | grep sleep
 ----
 
 === Step 3:
@@ -80,8 +85,7 @@ drop all capabilities and just add setgid and setuid back in.
 .Whitelisting Capabilities
 [source]
 ----
-sudo docker run -d --cap-drop=all --cap-add=setuid --cap-add=setgid fedora
-sleep 5 > /dev/null; pscap | grep sleep
+sudo docker run -d --cap-drop=all --cap-add=setuid --cap-add=setgid fedora sleep 5 > /dev/null; pscap | grep sleep
 ----
 
 The following bellow is a comparison of the out put form blacklisting vs.
@@ -102,10 +106,10 @@ setgid, setuid <2>
 
 <2> Whitelisting: Droping all and adding back the ones you need.
 
-.stop & delete images
+.Find Fedora containers
 [source]
 ----
-sudo docker ps -a
+sudo docker ps -a | grep fedora 
 
 ...
 
@@ -116,14 +120,20 @@ fdf41302efbc  <1>
 
 <1> Container ID to copy
 
-Then stop and remove the Container.
+Then remove the Container.
 
 [source]
 ----
-sudo docker stop fdf41302efbc
-
 sudo docker rm fdf41302efbc
 ----
+
+Or... just script it!
+.Find and destroy!
+[source]
+----
+sudo docker ps -a | grep fedora | awk '{print $1}' | xargs sudo docker rm
+----
+
 
 == Deep Dive into Capabilities
 
