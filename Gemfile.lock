@@ -2,6 +2,10 @@ GEM
   remote: https://rubygems.org/
   specs:
     asciidoctor (1.5.5)
+    asciidoctor-revealjs (1.0.2)
+      asciidoctor (~> 1.5.4)
+      slim (~> 3.0.6)
+      thread_safe (~> 0.3.5)
     json (2.0.2)
     kramdown (1.12.0)
     liquid (3.0.6)
@@ -15,6 +19,11 @@ GEM
       rack (~> 1.5)
       rack-protection (~> 1.4)
       tilt (>= 1.3, < 3)
+    slim (3.0.8)
+      temple (>= 0.7.6, < 0.9)
+      tilt (>= 1.3.3, < 2.1)
+    temple (0.8.0)
+    thread_safe (0.3.6)
     tilt (2.0.5)
 
 PLATFORMS
@@ -22,6 +31,7 @@ PLATFORMS
 
 DEPENDENCIES
   asciidoctor
+  asciidoctor-revealjs
   json
   kramdown
   liquid
@@ -29,6 +39,3 @@ DEPENDENCIES
   multi_markdown
   puma
   sinatra
-
-BUNDLED WITH
-   1.13.2
