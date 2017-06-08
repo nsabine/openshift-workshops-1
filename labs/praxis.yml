@@ -32,15 +32,4 @@ modules:
     - deploy-openshift
     - simple-python
     - scaling
-    - explore
-    - parksmap-architecture
-    - docker
-    - scaling
-    - routes
-    - permissions
-    - python-github
-    - databases-py
-    - application-health
-    - codechanges
-    - templates
   
