@@ -27,6 +27,7 @@ vars:
   
 modules:
   activate:
+    - openshift-architecture
     - environment
     - explore
     - parksmap-architecture

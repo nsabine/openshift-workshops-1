@@ -1,3 +1,7 @@
+openshift-architecture:
+  name: OpenShift Architecture Overview
+  vars:
+    BACKEND: 'revealjs'
 environment:
   name: Lab Environment Overview
 install:
