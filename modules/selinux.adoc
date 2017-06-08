@@ -1,0 +1,175 @@
+## SELinux
+
+SELinux is primarily a labeling system that assigns a label (name) to every
+process and system object. This allows every aspect of kernel operations to be
+first labeled, second classified, and then ultimately enforced by a set of
+rules that the provider maintains.
+
+BENEFITS OF RUNNING SELINUX
+
+- All processes and files are labeled with a type. A type defines a domain for
+processes, and a type for files. Processes are separated from each other by
+running in their own domains, and SELinux policy rules define how processes
+interact with files, as well as how processes interact with each other. Access
+is only allowed if an SELinux policy rule exists that specifically allows it.
+- Fine-grained access control. Stepping beyond traditional UNIX permissions
+that are controlled at user discretion and based on Linux user and group IDs,
+SELinux access decisions are based on all available information, such as an
+SELinux user, role, type, and, optionally, a level.
+- SELinux policy is administratively-defined, enforced system-wide, and is not
+set at user discretion.
+- SELinux can be used to enforce data confidentiality and integrity, as well as
+protecting processes from untrusted inputs.
+- Reduced vulnerability to privilege escalation attacks. SELinux policy rules
+define how processes access files and other processes. If a process is
+compromised, the attacker only has access to the normal functions of that
+process, and to files the process has been configured to have access to.
+
+_For example, if the Apache HTTP Server is compromised, an attacker cannot use
+that process to read files in user home directories, unless a specific SELinux
+policy rule was added or configured to allow such access._
+
+== SELinux
+
+=== Step 1:
+
+In this section, we’ll cover the basics of SELinux and containers. SELinux
+policy prevents a lot of break out situations where the other security
+mechanisms fail. With SELinux on Docker, we write policy that says that the
+container process running as `svirt_lxc_net_t` can only read/write files with
+the `svirt_sandbox_file_t` label.
+
+Create the following directories.
+
+.Setup directory and file
+[source]
+----
+mkdir -p /tmp/selinux/data
+
+echo "Hello World" > /tmp/selinux/data/file1.txt
+
+cat /tmp/selinux/data/file1.txt
+----
+
+.Get Current SELinux policy
+[source]
+----
+sestatus | grep mode
+
+Current mode:                   enforcing
+----
+
+=== Step 2:
+
+.Try to cat out the file (it should fail)
+[source]
+----
+sudo docker run --rm -v /tmp/selinux/data:/data fedora cat /data/file1.txt
+----
+
+You can see the reason by inspecting the folder’s security context:
+
+[source]
+----
+ls -Z /tmp/selinux/data
+
+unconfined_u:object_r:user_tmp_t:s0 file1.txt
+----
+
+The label for the data doesn’t match the label for containers. The fix is to
+apply the container label to the data by using the `chcon` tool, effectively
+notifying the system that you expect these files to be consumed by containers:
+
+Find the selinux file context associated with containers.
+
+.Find the Containers Labels
+[source]
+----
+sudo semanage fcontext --list | grep svirt
+
+/var/lib/docker-latest/vfs(/.*)?                   all files          system_u:object_r:svirt_sandbox_file_t:s0 
+/var/lib/docker/vfs(/.*)?                          all files          system_u:object_r:svirt_sandbox_file_t:s0 
+----
+
+The containers should be running at `svirt_sandbox_file_t`
+
+=== Step 3:
+
+Apply the container label to the `data` directory by using the `chcon` tool
+
+.relable the data dir
+[source]
+----
+chcon -Rt svirt_sandbox_file_t /tmp/selinux/data
+----
+
+Try to cat out the file again from the container.
+
+.run docker again
+[source]
+----
+sudo docker run --rm -v /tmp/selinux/data:/data fedora cat /data/file1.txt
+----
+
+What did you see?
+
+Now try it in reverse. Append text from the container to the file
+
+.append text
+[source]
+----
+sudo docker run --rm -v /tmp/selinux/data:/data fedora sh -c 'echo "Hi Again!" >> /data/file1.txt'
+----
+
+.see the text you appended from the container
+[source]
+----
+cat /tmp/selinux/data/file1.txt
+----
+
+
+== SELinux Resources
+
+- https://stopdisablingselinux.com/[Seriously, stop disabling SELinux.]
+- https://people.redhat.com/duffy/selinux/selinux-coloring-book_A4-Stapled.pdf[SELinux Coloring Book]
+- https://www.youtube.com/watch?v=cNoVgDqqJmM&feature=youtu.be[Security-enhanced Linux for mere mortals - 2015 Red Hat Summit]
+- https://www.nsa.gov/what-we-do/research/selinux/mailing-list.shtml[SELinux NSA Mailing List]
+
+== DOCKER SELINUX SECURITY POLICY
+
+The Docker SELinux security policy is similar to the libvirt security policy
+and is based on the libvirt security policy.
+
+The libvirt security policy is a series of SELinux policies that defines two
+ways of isolating virtual machines. Generally, virtual machines are prevented
+from accessing parts of the network. Specifically, individual virtual machines
+are denied access to one another’s resources.
+
+Red Hat extends the libvirt-SELinux model to Docker. The Docker SELinux role
+and Docker SELinux types are based on libvirt. For example, by default, Docker
+has access to /usr/var/ and some other locations, but it has complete access to
+things that are labeled with svirt_sandbox_file_t.
+
+https://www.mankier.com/8/docker_selinux - this explains the entire Docker
+SELinux policy. It is not in layman’s terms, but it is complete.
+
+`svirt_sandbox_file_t`
+
+[source]
+----
+system_u:system_r:svirt_lxc_net_t:s0:c186,c641
+^      ^           ^          ^     ^--- unique category
+|      |           |          |----  secret-level 0
+|      |           |--- a shared type
+|      |---SELinux role
+|------ SELinux user
+----
+
+If a file is labeled `svirt_sandbox_file_t`, then by default all containers can
+read it. But if the containers write into a directory that has
+`svirt_sandbox_file_t` ownership, they write using their own category (which in
+this case is `c186` , `c641`). If you start the same container twice, it will
+get a new category the second time ( a different category than it had the first
+time). The category system isolates containers from one another.
+
+Types can be applied to processes and to files.

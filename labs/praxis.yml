@@ -32,4 +32,5 @@ modules:
     - deploy-openshift
     - simple-python
     - scaling
-  
+    - kernel-capabilities
+    - selinux

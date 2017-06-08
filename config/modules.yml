@@ -30,6 +30,10 @@ simple-python:
   name: Deploy a Simple Application
 scaling:
   name: Scaling
+kernel-capabilities:
+  name: Kernel Capabilities
+selinux:
+  name: SELinux
 routes:
   name: Creating Routes
 logging:
