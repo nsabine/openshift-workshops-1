@@ -53,14 +53,12 @@ in the following image:
 image::/images/ocp-webhook1.png[Webhook]
 
 
-
 Once you have the URL copied to your clipboard, navigate to the code repository
-that you have for your nationalparks-py project that you forked in a previous lab.
+that you have for your nodejs-ex project that you forked.
 
 
-Click the Settings link on the top right of the screen, and then click "Webhooks", and finally click on add webhook:
+Click the Settings link on the top right of the screen, and then click "Webhooks", and finally click on add webhook.
 
-image::/images/ocp-webhook1-github.png[Webhook]
 
 In the next screen, paste your link into the "URL" field. You can leave the
 secret token field blank -- the secret is already in the URL and does not need
@@ -73,6 +71,10 @@ box. Remember that OpenShift's API is not presenting an SSL certificate signed
 by a known/trusted authority. Without *un-checking* the verification box, the
 webhook will fail.
 
+Your screen should look like this:
+
+image::/images/ocp-webhook1-github.png[Webhook]
+
 Finally, click on "Add webhook".
 
 
@@ -82,85 +84,22 @@ this out.
 
 #### Exercise: Using GitHub Web Hooks
 
-{% if PARKSMAP_PY %}
-
-Click "Code" at the top of the GitHub page. This is GitHub's repository view. Navigate to the root
-path and click on the `wsgi.py` file.
+Click "Code" at the top of the GitHub page. This is GitHub's repository view. Navigate to the views directory and click on the `index.html` file.
 
 Once you have the file on the screen, click the edit button in the top right
 hand corner as indication with the pencil icon:
 
 image::/images/githubedit1.png[Webhook]
 
-Change line number 35:
+Line number 219 is the page header.  I have changed mine to the following:
 
 [source]
 ----
-'displayName': 'National Parks (PY)'
+           <h1>Welcome to the OpenShift Workshop!!</h1>
 ----
 
-To
+Click on Commit changes at the bottom of the screen. Feel free to enter a commit message.
 
-[source]
-----
-'displayName': 'World National Parks (PY)'
-----
-
-{% else %}
-
-Click "Project" at the top of the GitHub page, and then "Files" towards the
-middle of the page. This is GitHub's repository view. Navigate to the following
-path:
-
-[source]
-----
-src/main/java/com/openshift/evg/roadshow/parks/rest/
-----
-
-Then click on the `BackendController.java` file.
-
-Once you have the file on the screen, click the edit button in the top right
-hand corner as shown here:
-
-image::/images/ocp-webhook5.png[Webhook]
-
-Change line number 20:
-
-[source]
-----
-return new Backend("nationalparks","National Parks", new Coordinates("47.039304", "14.505178"), 4);
-----
-
-To
-
-[source]
-----
-return new Backend("nationalparks","OpenShift National Parks", new Coordinates("47.039304", "14.505178"), 4);
-----
-
-{% endif %}
-
-Click on Commit changes at the bottom of the screen. Feel free to enter a commit
-message.
-
-{% if modules.pipelines %}
-
-Once you have committed your changes, the `nationalparks-pipeline` should almost
-instantaneously be triggered in OpenShift. Look at the *Builds* &rarr; *Pipelines*
-page in OpenShift Console to verify the pipeline is running:
-
-image::/images/ocp-webhook6-pipeline.png[Pipeline Running]
-
-After the test stage, pipeline waits for manual approval in order to deploy to the
-*Live* container. Click on *Input Required* link which takes you to the Jenkins Console
-for approving the deployment and then *Proceed* button.
-
-image::/images/pipeline-jenkins-input.png[Pipline Manual Approval,1000,align=center]
-
-Once the pipeline execution is finished, verify your new Docker image was
-automatically deployed by viewing the application in your browser:
-
-{% else %}
 Once you have committed your changes, a *Build* should almost instantaneously be
 triggered in OpenShift. Look at the *Builds* page in the web console, or run the
 following command to verify:
@@ -175,20 +114,23 @@ You should see that a new build is running:
 [source]
 ----
 NAME              TYPE      FROM          STATUS     STARTED          DURATION
-nationalparks-1   Source    Git@b052ae6   Complete   18 hours ago     36s
-nationalparks-2   Source    Git@3b26e1a   Running    43 seconds ago
+nodejs-ex-1       Source    Git@37c9176   Complete   14 minutes ago   1m6s
+nodejs-ex-2       Source    Git@81ec980   Running    5 seconds ago   
 ----
 
 Once the build and deploy has finished, verify your new Docker image was
-automatically deployed by viewing the application in your browser:
-{% endif %}
+automatically deployed by viewing the application in your browser.
 
 [source]
 ----
-http://nationalparks-USERNAME-parks.apps.xxxxxxx.pixy.io/ws/info
+http://nodejs-ex-webhooks.apps.ose.0.rhtps.io
 ----
 
-You should now see the new name you have set in the JSON string returned.
+[IMPORTANT]
+Do you create the route?
+
+
+You should now your new header.
 
 
 #### Exercise: Rollback
@@ -211,21 +153,19 @@ The output will be similar to the following:
 
 [source]
 ----
-NAME            REVISION   DESIRED   CURRENT   TRIGGERED BY
-mongodb         1          1         1         config,image(mongodb:3.2)
-nationalparks   2          1         1         config,image(nationalparks:{{NATIONALPARKS_VERSION}})
-parksmap        1          1         1         config,image(parksmap:{{PARKSMAP_VERSION}})
+NAME        REVISION   DESIRED   CURRENT   TRIGGERED BY
+nodejs-ex   2          1         1         config,image(nodejs-ex:latest)
 ----
 
 Now run the following command to rollback the latest code change:
 
 [source]
 ----
-oc rollback nationalparks
+oc rollback nodejs-ex
 
-#3 rolled back to nationalparks-1
-Warning: the following images triggers were disabled: nationalparks:latest
-  You can re-enable them with: oc set triggers dc/nationalparks --auto
+#3 rolled back to nodejs-ex-1
+Warning: the following images triggers were disabled: nodejs-ex:latest
+  You can re-enable them with: oc set triggers dc/nodejs-ex --auto
 ----
 
 Once the deploy is complete, verify that the page header is reverted to the
@@ -233,7 +173,7 @@ original header by viewing the application in your browser.
 
 [source]
 ----
-http://nationalparks-USERNAME-parks.apps.xxxxxx.pixy.io/ws/info
+http://nodejs-ex-webhooks.apps.ose.0.rhtps.io
 ----
 
 [NOTE]
@@ -244,7 +184,7 @@ the automatic deployments run this:
 
 [source]
 ----
-oc deploy nationalparks --enable-triggers
+oc deploy nodejs-ex --enable-triggers
 ----
 ====
 
@@ -256,8 +196,7 @@ caused a new deployment (#3). In essence, we always move forwards in OpenShift,
 even if we are going "back".
 
 * We know that the first deployment (#1) was the initial build.
-* We know that the second deployment (#2) was the new code (OpenShift National
-  Parks)
+* We know that the second deployment (#2) was the new code 
 * We know that the third deployment (#3) was our rollback to the first
   "version".
 
@@ -265,9 +204,9 @@ So, if we want to return to the "new code" version, that is deployment #2.
 
 [source]
 ----
-oc rollback nationalparks-2
+oc rollback nodejs-ex-2
 
-#4 rolled back to nationalparks-2
+#4 rolled back to nodejs-ex-2
 Warning: the following images triggers were disabled: nationalparks:latest
   You can re-enable them with: oc set triggers dc/nationalparks --auto
 ----
