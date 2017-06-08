@@ -1,0 +1,2 @@
+image::/images/openshift-technical-overview-s2i.png[S2I Technical Overview,800,align="center",link="https://docs.google.com/presentation/d/1NfMAFiDlMC6wdNcOzfxYmY5lq4r_Gh8YrXFR6S3bbi8/edit#slide=id.g2027f96954_0_109"]
+

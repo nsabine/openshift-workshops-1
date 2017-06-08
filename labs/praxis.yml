@@ -35,3 +35,4 @@ modules:
     - kernel-capabilities
     - selinux
     - atomic-scan
+    - s2i-overview

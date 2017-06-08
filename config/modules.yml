@@ -36,6 +36,8 @@ selinux:
   name: SELinux
 atomic-scan:
   name: Atomic Scan
+s2i-overview:
+  name: Deploying Source Code
 routes:
   name: Creating Routes
 logging:
