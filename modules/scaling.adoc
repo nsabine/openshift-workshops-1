@@ -37,7 +37,8 @@ OpenShift to stand up the `DC17-Flask` image:
 [source]
 ----
 
-$ oc get dc
+oc get dc
+
 NAME         REVISION   DESIRED   CURRENT   TRIGGERED BY
 dc17-flask   1          1         1         config,image(dc17-flask:latest)
 
@@ -51,7 +52,8 @@ you told OpenShift to stand up the `DC17-Flask` image:
 [source]
 ----
 
-$ oc get rc
+oc get rc
+
 NAME           DESIRED   CURRENT   AGE
 dc17-flask-1   1         1         16m
 
@@ -76,7 +78,7 @@ the *Pod* in the OpenShift web console on the overview page. It's your choice.
 [source]
 ----
 
-$ oc scale --replicas=2 dc/dc17-flask
+oc scale --replicas=2 dc/dc17-flask
 
 deploymentconfig "dc17-flask" scaled
 
@@ -87,7 +89,8 @@ To verify that we changed the number of replicas, issue the following command:
 [source]
 ----
 
-$ oc get rc
+oc get rc
+
 NAME           DESIRED   CURRENT   AGE
 dc17-flask-1   2         2         18m
 
@@ -99,7 +102,8 @@ the `oc get pods` command:
 [source]
 ----
 
-$ oc get pods
+oc get pods
+
 NAME                 READY     STATUS      RESTARTS   AGE
 dc17-flask-1-9k8bl   1/1       Running     0          1m
 dc17-flask-1-build   0/1       Completed   0          21m
@@ -113,7 +117,7 @@ previous lab accurately reflects two endpoints:
 [source]
 ----
 
-$ oc describe svc dc17-flask
+oc describe svc dc17-flask
 
 Name:			dc17-flask
 Namespace:		flask
@@ -134,7 +138,7 @@ Another way to look at a *Service*'s endpoints is with the following:
 [source]
 ----
 
-$ oc get endpoints dc17-flask
+oc get endpoints dc17-flask
 
 NAME         ENDPOINTS                            AGE
 dc17-flask   10.129.0.68:8080,10.130.0.143:8080   23m
@@ -167,7 +171,8 @@ name. Then, do the following:
 
 [source]
 ----
-$ oc delete pod dc17-flask-1-9k8bl
+
+oc delete pod dc17-flask-1-9k8bl
 
 pod "dc17-flask-1-9k8bl" deleted
 
@@ -178,7 +183,8 @@ Then, as fast as you can, do the following:
 [source]
 ----
 
-$ oc get pods
+oc get pods
+
 NAME                 READY     STATUS              RESTARTS   AGE
 dc17-flask-1-4vjx6   0/1       ContainerCreating   0          3s
 dc17-flask-1-build   0/1       Completed           0          27m
