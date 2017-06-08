@@ -11,3 +11,5 @@ gem 'multi_markdown'
 
 gem 'json'
 gem 'multi_json'
+
+gem 'asciidoctor-reveal.js'
