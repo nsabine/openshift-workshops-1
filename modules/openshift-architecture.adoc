@@ -1,6 +1,6 @@
 = OpenShift Architecture Overview
 Nick Sabine
-:backend: revealjs
+:backend: deckjs
 
 == Slide One
 

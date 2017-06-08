@@ -6,6 +6,8 @@ GEM
       asciidoctor (~> 1.5.4)
       slim (~> 3.0.6)
       thread_safe (~> 0.3.5)
+    haml (4.0.7)
+      tilt
     json (2.0.2)
     kramdown (1.12.0)
     liquid (3.0.6)
@@ -32,6 +34,7 @@ PLATFORMS
 DEPENDENCIES
   asciidoctor
   asciidoctor-revealjs
+  haml
   json
   kramdown
   liquid
@@ -39,3 +42,4 @@ DEPENDENCIES
   multi_markdown
   puma
   sinatra
+  tilt
