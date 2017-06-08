@@ -1,6 +1,7 @@
 require 'sinatra/base'
 
 require 'asciidoctor'
+require 'asciidoctor-revealjs'
 require 'liquid'
 
 require 'yaml'
