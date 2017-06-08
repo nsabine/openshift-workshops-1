@@ -3,7 +3,7 @@
 image::/images/environment-diagram.png[Environment Diagram,800,align="center"]
 
 
-Today's workshop infrastructure is being run on {{ENVIRONMENT}}. Each student will be assigned a single instance to use.  Your student number will be substituted where you see this `${student#}`. Example: if you are student 21:
+Today's workshop infrastructure is being run on {{ENVIRONMENT}}. Each student will be assigned a single instance to use.  Your student number will be substituted where you see this `${STUDENT#}`. Example: if you are student 21:
 `http://workshop.21.rhtps.io`
 
 If you do not know your user number, please make sure you figure that out with your instructor.
@@ -15,7 +15,7 @@ Each student's personal EC2 lab is equipped with the following:
 *  t2.large EC2 Instance (2 vCPU, 8 GB RAM)
 ** _All nodes are running Red Hat Enterprise Linux 7.3_
 *  Web-based console access:
-** https://workshop.`${student#}`.rhtps.io:8888/wetty/ssh/ec2-user
+** https://workshop.`${STUDENT#}`.rhtps.io:8888/wetty/ssh/ec2-user
 *  A directory containing all files used in this workshop.
 
 == Setup Your Environment

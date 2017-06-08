@@ -24,12 +24,6 @@ configured registry, router, image streams, and default templates.
 sudo -i
 ----
 
-.make a /data dir
-[source]
-----
-mkdir /data
-----
-
 Next use the following command to bring up the cluster on your local machine.
 
 [IMPORTANT]
