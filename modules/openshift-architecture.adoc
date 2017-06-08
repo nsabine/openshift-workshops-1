@@ -1,9 +1,4 @@
-= OpenShift Architecture Overview
-Nick Sabine
-:backend: deckjs
+## Presentation: OpenShift Technical Overview
 
-== Slide One
-
-* Foo
-* Bar
+image::/images/openshift-technical-overview-presentation.png[OpenShift Technical Overview,800,align="center",link="https://docs.google.com/presentation/d/1NfMAFiDlMC6wdNcOzfxYmY5lq4r_Gh8YrXFR6S3bbi8"]
 
