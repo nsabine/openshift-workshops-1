@@ -91,6 +91,6 @@ To run this example:
 
 image::/images/jenkins-pipeline-blue-green.png[Jenkins Blue-Green Pipeline]
 
-With each new pipeline, notice the router service selector switches between the blue and green versions of the application
+With each new pipeline build, notice the router service selector switches between the blue and green versions of the application:
 
 image::/images/openshift-route-bluegreen.png[OpenShift Blue-Green Route]
