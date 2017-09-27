@@ -28,7 +28,7 @@ extend `atomic scan` with a custom scanner.
 
 *Pull some images*
 
-.Pull a RHEL 7.2 & 7.3 image
+.Pull RHEL 7.3 & 7.4 images
 [source]
 ----
 sudo docker pull registry.access.redhat.com/rhel7.3
@@ -58,7 +58,7 @@ sudo atomic scan registry.access.redhat.com/rhel7.3
 sudo atomic scan --scan_type standards_compliance registry.access.redhat.com/rhel7.3
 ----
 
-Now let's take a look at RHEL7.3 (latest)
+Now let's take a look at RHEL7.4 (latest)
 
 .Atomic default scan OpenSCAP
 [source]
