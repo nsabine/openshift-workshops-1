@@ -35,9 +35,7 @@ policy rule was added or configured to allow such access._
 
 In this section, we'll cover the basics of SELinux and containers. SELinux
 policy prevents a lot of break out situations where the other security
-mechanisms fail. With SELinux on Docker, we write policy that says that the
-container process running as `svirt_lxc_net_t` can only read/write files with
-the `svirt_sandbox_file_t` label.
+mechanisms fail. 
 
 Create the following directories.
 
@@ -61,11 +59,19 @@ Current mode:                   enforcing
 
 === Step 2:
 
-.Try to cat out the file (it should fail)
+.Try to cat out the file (it should succeed)
 [source]
 ----
 sudo docker run --rm -v /tmp/selinux/data:/data fedora cat /data/file1.txt
 ----
+
+
+.Try to write into the file (it should fail)
+[source]
+----
+sudo docker run --rm -v /tmp/selinux/data:/data fedora sh -c 'echo "Hello from Fedora" >> /data/file1.txt'
+----
+
 
 You can see the reason by inspecting the folder's security context:
 
@@ -74,6 +80,17 @@ You can see the reason by inspecting the folder's security context:
 ls -Z /tmp/selinux/data
 
 unconfined_u:object_r:user_tmp_t:s0 file1.txt
+----
+
+And the resulting SELinux denial:
+
+[source]
+----
+ausearch -m avc -ts recent
+
+type=AVC msg=audit(1506533048.799:7042): avc:  denied  { write } for  pid=10898
+comm="bash" name="file1.txt" dev="xvda2" ino=79711169 scontext=system_u:system_r:svirt_lxc_net_t:s0:c51,c96
+tcontext=unconfined_u:object_r:user_tmp_t:s0 tclass=file
 ----
 
 The label for the data doesn't match the label for containers. The fix is to
@@ -87,8 +104,8 @@ Find the selinux file context associated with containers.
 ----
 sudo semanage fcontext --list | grep svirt
 
-/var/lib/docker-latest/vfs(/.*)?                   all files          system_u:object_r:svirt_sandbox_file_t:s0 
-/var/lib/docker/vfs(/.*)?                          all files          system_u:object_r:svirt_sandbox_file_t:s0 
+/var/lib/docker-latest/vfs(/.*)?                   all files          system_u:object_r:svirt_sandbox_file_t:s0
+/var/lib/docker/vfs(/.*)?                          all files          system_u:object_r:svirt_sandbox_file_t:s0
 ----
 
 The containers should be running at `svirt_sandbox_file_t`
@@ -103,23 +120,14 @@ Apply the container label to the `data` directory by using the `chcon` tool
 chcon -Rt svirt_sandbox_file_t /tmp/selinux/data
 ----
 
-Try to cat out the file again from the container.
+Try to write to the file again from the container.
 
 .run docker again
 [source]
 ----
-sudo docker run --rm -v /tmp/selinux/data:/data fedora cat /data/file1.txt
+sudo docker run --rm -v /tmp/selinux/data:/data fedora sh -c 'echo "Hello from Fedora" >> /data/file1.txt'
 ----
 
-What did you see?
-
-Now try it in reverse. Append text from the container to the file
-
-.append text
-[source]
-----
-sudo docker run --rm -v /tmp/selinux/data:/data fedora sh -c 'echo "Hi Again!" >> /data/file1.txt'
-----
 
 .see the text you appended from the container
 [source]
@@ -148,7 +156,7 @@ are denied access to one another's resources.
 Red Hat extends the libvirt-SELinux model to Docker. The Docker SELinux role
 and Docker SELinux types are based on libvirt. For example, by default, Docker
 has access to /usr/var/ and some other locations, but it has complete access to
-things that are labeled with svirt_sandbox_file_t.
+things that are labeled with `svirt_sandbox_file_t`.
 
 https://www.mankier.com/8/docker_selinux - this explains the entire Docker
 SELinux policy. It is not in layman's terms, but it is complete.

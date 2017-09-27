@@ -10,17 +10,17 @@ achieved.
 
 #### Exercise: Fork an Example App
 
-In this lab, we're going to make a change to an app.  To do that, we need to 
+In this lab, we're going to make a change to an app.  To do that, we need to
 fork an exising codebase so we have write permissions to the git repo.
 
-In your web browser, sign in to GitHub and naviate to the 
+In your web browser, sign in to GitHub and naviate to the
 https://github.com/openshift/nodejs-ex[NodeJS Example].
 
-image:://images/github-nodejs-example.png[NodeJS Example,800,align="center"]
+image::/images/github-nodejs-example.png[NodeJS Example,800,align="center"]
 
 click on Fork:
 
-image:://images/github-fork.png[Fork,800,align="center"]
+image::/images/github-fork.png[Fork,800,align="center"]
 
 
 #### Exercise: Deploy Your App
@@ -36,7 +36,7 @@ oc new-project webhooks
 .Deploy the App
 [source]
 ----
-oc new-app https://github.com/<YOUR USENAME>/nodejs-ex 
+oc new-app https://github.com/<YOUR USENAME>/nodejs-ex
 ----
 
 
@@ -115,7 +115,7 @@ You should see that a new build is running:
 ----
 NAME              TYPE      FROM          STATUS     STARTED          DURATION
 nodejs-ex-1       Source    Git@37c9176   Complete   14 minutes ago   1m6s
-nodejs-ex-2       Source    Git@81ec980   Running    5 seconds ago   
+nodejs-ex-2       Source    Git@81ec980   Running    5 seconds ago
 ----
 
 Once the build and deploy has finished, verify your new Docker image was
@@ -130,7 +130,7 @@ http://nodejs-ex-webhooks.apps.ose.0.rhtps.io
 Do you create the route?
 
 
-You should now your new header.
+You should now see your new header.
 
 
 #### Exercise: Rollback
@@ -196,7 +196,7 @@ caused a new deployment (#3). In essence, we always move forwards in OpenShift,
 even if we are going "back".
 
 * We know that the first deployment (#1) was the initial build.
-* We know that the second deployment (#2) was the new code 
+* We know that the second deployment (#2) was the new code
 * We know that the third deployment (#3) was our rollback to the first
   "version".
 
@@ -207,8 +207,8 @@ So, if we want to return to the "new code" version, that is deployment #2.
 oc rollback nodejs-ex-2
 
 #4 rolled back to nodejs-ex-2
-Warning: the following images triggers were disabled: nationalparks:latest
-  You can re-enable them with: oc set triggers dc/nationalparks --auto
+Warning: the following images triggers were disabled: nodejs-ex:latest
+  You can re-enable them with: oc set triggers dc/nodejs-ex --auto
 ----
 
 Cool!

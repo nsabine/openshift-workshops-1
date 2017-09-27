@@ -12,7 +12,7 @@ the platform and enables defining truly complex workflows directly within OpenSh
 In this exercise, we are going to deploy a sample Jenkins pipeline, taking advantage
 of the OpenShift-Jenkins integration.
 
-### Exercise: Deploy Simple Pipeline 
+### Exercise: Deploy Simple Pipeline
 
 Now let's create another project and deploy our app:
 
@@ -53,7 +53,7 @@ That's a big of magic.  Let's dig in and see how's it working.  Click on the Bui
 
 image::/images/jenkins-pipeline-status.png[Jenkins Pipeline Status]
 
-Here you can see recent pipeline runs.  Let's edit the pipeline so we can see how this thing works.  Click "Edit Pipeline."  
+Here you can see recent pipeline runs.  Let's edit the pipeline so we can see how this thing works.  Click "Edit Pipeline."
 
 
 image::/images/jenkins-pipeline-edit.png[Jenkins Pipeline Edit]
@@ -62,7 +62,7 @@ Here you can see the Jenkinsfile that is controlling the stages of the build.  T
 
 
 
-### Exercise: Deploy Blue/Green Pipeline 
+### Exercise: Deploy Blue/Green Pipeline
 
 Bonus round.  Let's deploy a more complex scenario.
 
@@ -90,3 +90,7 @@ To run this example:
 . Start the pipeline again. Go back to step 11 and repeat.
 
 image::/images/jenkins-pipeline-blue-green.png[Jenkins Blue-Green Pipeline]
+
+With each new pipeline, notice the router service selector switches between the blue and green versions of the application
+
+image::/images/openshift-route-bluegreen.png[OpenShift Blue-Green Route]
