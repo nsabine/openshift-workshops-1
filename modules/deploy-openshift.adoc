@@ -44,7 +44,7 @@ oc cluster up --public-hostname=workshop.${STUDENT}.rhtps.io \
 --routing-suffix=apps.ose.${STUDENT}.rhtps.io \
 --host-pv-dir=/data --host-data-dir=/data \
 --image=registry.access.redhat.com/openshift3/ose \
---version=v3.5
+--version=v{{OPENSHIFT_VERSION}}
 ----
 
 .Details on the `oc` command
@@ -56,7 +56,7 @@ oc cluster up \
    --host-pv-dir=/data \ <3>
    --host-data-dir=/data  <4>
    --image=registry.access.redhat.com/openshift3/ose <5>
-   --version=v3.5 <6>
+   --version=v{{OPENSHIFT_VERSION}} <6>
 ----
 
 <1> This sets OpenShift's public name to the public DNS name of your instance.
@@ -67,9 +67,9 @@ oc cluster up \
 
 <4> To persist data across restarts, specify a valid host directory when starting your cluster with `oc` cluster up.
 
-<5> Pull from the Red Hat registry to run OpenShift Container Platform. 
+<5> Pull from the Red Hat registry to run OpenShift Container Platform.
 
-<6> Get the latest version of OCP 3.5.
+<6> Get the latest version of {{OPENSHIFT_SHORTNAME}} {{OPENSHIFT_VERSION}}.
 
 .Successful Build (example)
 [source]
@@ -91,9 +91,8 @@ oc cluster up \
        oc login -u system:admin
 ----
 
-<1> OpenShift Web Console, Example: `https://workshop.0.rhtps.io:8443`  (open in browser) 
+<1> OpenShift Web Console, Example: `https://workshop.0.rhtps.io:8443`  (open in browser)
 
 === Step 2:
 
 *There is no step 2!*
-

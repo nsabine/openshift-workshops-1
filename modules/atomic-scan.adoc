@@ -31,9 +31,9 @@ extend `atomic scan` with a custom scanner.
 .Pull a RHEL 7.2 & 7.3 image
 [source]
 ----
-sudo docker pull registry.access.redhat.com/rhel7.2
-
 sudo docker pull registry.access.redhat.com/rhel7.3
+
+sudo docker pull registry.access.redhat.com/rhel7.4
 ----
 
 Let's see what types of scanners are available
@@ -44,21 +44,7 @@ Let's see what types of scanners are available
 sudo atomic scan --list
 ----
 
-First lets take a look at RHEL7.2
-
-.Atomic default scan OpenSCAP
-[source]
-----
-sudo atomic scan registry.access.redhat.com/rhel7.2
-----
-
-.Atomic Compliance scan
-[source]
-----
-sudo atomic scan --scan_type standards_compliance registry.access.redhat.com/rhel7.2
-----
-
-Now let's take a look at RHEL7.3 (latest)
+First lets take a look at RHEL7.3
 
 .Atomic default scan OpenSCAP
 [source]
@@ -70,6 +56,20 @@ sudo atomic scan registry.access.redhat.com/rhel7.3
 [source]
 ----
 sudo atomic scan --scan_type standards_compliance registry.access.redhat.com/rhel7.3
+----
+
+Now let's take a look at RHEL7.3 (latest)
+
+.Atomic default scan OpenSCAP
+[source]
+----
+sudo atomic scan registry.access.redhat.com/rhel7.4
+----
+
+.Atomic Compliance scan
+[source]
+----
+sudo atomic scan --scan_type standards_compliance registry.access.redhat.com/rhel7.4
 ----
 
 You will notice that over time vulnerabilities are found in OS and
@@ -134,7 +134,7 @@ Now lets try the get rpms scan
 .rpm-list
 [source]
 ----
-sudo atomic scan --scanner example_plugin --scan_type=rpm-list registry.access.redhat.com/rhel7.3
+sudo atomic scan --scanner example_plugin --scan_type=rpm-list registry.access.redhat.com/rhel7.4
 ----
 
 == Additional Fun
@@ -168,7 +168,7 @@ scans: [
 ]
 ----
 
-So you can see that as long as you package up the scanner code in the container 
+So you can see that as long as you package up the scanner code in the container
 and adhere to the api it should be easy to add your own custom scanner.
 
 https://developers.redhat.com/blog/2016/05/20/creating-a-custom-atomic-scan-plug-in/#more-421256[Creating a custom atomic scan plugin]

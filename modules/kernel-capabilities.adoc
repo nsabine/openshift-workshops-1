@@ -109,7 +109,7 @@ setgid, setuid <2>
 .Find Fedora containers
 [source]
 ----
-sudo docker ps -a | grep fedora 
+sudo docker ps -a | grep fedora
 
 ...
 
@@ -260,7 +260,7 @@ If you want to bind to a port below 1024 you need this capability. If you are
 running a service that listens to a port above 1024 you should drop this
 capability.
 
-The risk of this capabilty is a rogue process interpreting a service like sshd,
+The risk of this capability is a rogue process interpreting a service like sshd,
 and collecting users passwords. Running a container in a different network
 namespace reduces the risk of this capability. It would be difficult for the
 container process to get to the public network interface
