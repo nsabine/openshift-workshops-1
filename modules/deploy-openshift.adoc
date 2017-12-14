@@ -41,7 +41,7 @@ export STUDENT=0
 [source]
 ----
 oc cluster up --public-hostname=workshop.${STUDENT}.rhtps.io \
---routing-suffix=apps.ose.${STUDENT}.rhtps.io \
+--routing-suffix=apps.ocp.${STUDENT}.rhtps.io \
 --host-pv-dir=/data --host-data-dir=/data \
 --image=registry.access.redhat.com/openshift3/ose \
 --version=v{{OPENSHIFT_VERSION}}
@@ -52,7 +52,7 @@ oc cluster up --public-hostname=workshop.${STUDENT}.rhtps.io \
 ----
 oc cluster up \
    --public-hostname=workshop.${STUDENT}.rhtps.io \ <1>
-   --routing-suffix=apps.ose.${STUDENT}.rhtps.io \ <2>
+   --routing-suffix=apps.ocp.${STUDENT}.rhtps.io \ <2>
    --host-pv-dir=/data \ <3>
    --host-data-dir=/data  <4>
    --image=registry.access.redhat.com/openshift3/ose <5>

@@ -1,4 +1,4 @@
-name: OpenShift 3.6 Workshop
+name: OpenShift 3.7 Workshop
 logo: redhat.png
 vars:
   DOWNLOAD_CLIENT_WINDOWS: "https://github.com/openshift/origin/releases/download/v3.6.0/openshift-origin-client-tools-v3.6.0-c4dd4cf-windows.zip"
@@ -14,7 +14,7 @@ vars:
   METRICS_ENABLED: false
   OPENSHIFT_NAME: "OpenShift Container Platform"
   OPENSHIFT_SHORTNAME: "OCP"
-  OPENSHIFT_VERSION: "3.6"
+  OPENSHIFT_VERSION: "3.7"
   OC_VERSION: "1.6.0"
   PARKSMAP_IMAGENAME: "parksmap-py"
   PARKSMAP_VERSION: "1.0.0"
