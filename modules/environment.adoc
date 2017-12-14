@@ -12,7 +12,7 @@ If you do not know your user number, please make sure you figure that out with y
 
 Each student's personal EC2 lab is equipped with the following:
 
-*  t2.large EC2 Instance (2 vCPU, 8 GB RAM)
+*  t2.medium EC2 Instance (2 vCPU, 4 GB RAM)
 ** _All nodes are running Red Hat Enterprise Linux 7.4_
 *  Web-based console access:
 ** https://workshop.`${STUDENT#}`.rhtps.io:8888/wetty/ssh/ec2-user
