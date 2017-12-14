@@ -42,11 +42,11 @@ Create the following directories.
 .Setup directory and file
 [source]
 ----
-mkdir -p /tmp/selinux/data
+mkdir -p /home/selinux/data
 
-echo "Hello World" > /tmp/selinux/data/file1.txt
+echo "Hello World" > /home/selinux/data/file1.txt
 
-cat /tmp/selinux/data/file1.txt
+cat /home/selinux/data/file1.txt
 ----
 
 .Get Current SELinux policy
@@ -59,17 +59,10 @@ Current mode:                   enforcing
 
 === Step 2:
 
-.Try to cat out the file (it should succeed)
-[source]
-----
-sudo docker run --rm -v /tmp/selinux/data:/data fedora cat /data/file1.txt
-----
-
-
 .Try to write into the file (it should fail)
 [source]
 ----
-sudo docker run --rm -v /tmp/selinux/data:/data fedora sh -c 'echo "Hello from Fedora" >> /data/file1.txt'
+sudo docker run --rm -v /home/selinux/data:/data fedora sh -c 'echo "Hello from Fedora" >> /data/file1.txt'
 ----
 
 
@@ -77,9 +70,9 @@ You can see the reason by inspecting the folder's security context:
 
 [source]
 ----
-ls -Z /tmp/selinux/data
+ls -Z /home/selinux/
 
-unconfined_u:object_r:user_tmp_t:s0 file1.txt
+drwxr-xr-x. root root unconfined_u:object_r:home_root_t:s0 data
 ----
 
 And the resulting SELinux denial:
@@ -88,9 +81,9 @@ And the resulting SELinux denial:
 ----
 ausearch -m avc -ts recent
 
-type=AVC msg=audit(1506533048.799:7042): avc:  denied  { write } for  pid=10898
-comm="bash" name="file1.txt" dev="xvda2" ino=79711169 scontext=system_u:system_r:svirt_lxc_net_t:s0:c51,c96
-tcontext=unconfined_u:object_r:user_tmp_t:s0 tclass=file
+type=AVC msg=audit(1513284580.482:2239): avc:  denied  { append } for  pid=25102 comm="sh" name="file1.t
+xt" dev="xvda2" ino=71330941 scontext=system_u:system_r:svirt_lxc_net_t:s0:c907,c980 tcontext=unconfined
+_u:object_r:home_root_t:s0 tclass=file
 ----
 
 The label for the data doesn't match the label for containers. The fix is to
@@ -117,7 +110,7 @@ Apply the container label to the `data` directory by using the `chcon` tool
 .relable the data dir
 [source]
 ----
-chcon -Rt svirt_sandbox_file_t /tmp/selinux/data
+chcon -Rt svirt_sandbox_file_t /home/selinux/data
 ----
 
 Try to write to the file again from the container.
@@ -125,14 +118,14 @@ Try to write to the file again from the container.
 .run docker again
 [source]
 ----
-sudo docker run --rm -v /tmp/selinux/data:/data fedora sh -c 'echo "Hello from Fedora" >> /data/file1.txt'
+sudo docker run --rm -v /home/selinux/data:/data fedora sh -c 'echo "Hello from Fedora" >> /data/file1.txt'
 ----
 
 
 .see the text you appended from the container
 [source]
 ----
-cat /tmp/selinux/data/file1.txt
+cat /home/selinux/data/file1.txt
 ----
 
 
