@@ -13,7 +13,7 @@ oc whoami
 You should be logged in as `developer`
 
 Create a new
-https://docs.openshift.com/container-platform/3.5/architecture/core_concepts/projects_and_users.html[Project]
+https://docs.openshift.com/container-platform/3.7/architecture/core_concepts/projects_and_users.html[Project]
 for your first app.
 
 .create new project
@@ -64,7 +64,7 @@ Click on the new project you created `Flask App`.
 image::/images/openshift-flask-project.png[Flask Project,800,align="center"]
 
 Now we need to create a
-https://docs.openshift.com/container-platform/3.5/architecture/core_concepts/routes.html[`route`]
+https://docs.openshift.com/container-platform/3.7/architecture/core_concepts/routes.html[`route`]
 to see the app.
 
 Click `Create Route`. Accept the defaults and click `create`.
@@ -73,7 +73,7 @@ Click `Create Route`. Accept the defaults and click `create`.
 image::/images/openshift-flask-create-route.png[Create Route,800,align="center"]
 
 Now lets see your first app. Click the new route. It should look similar to
-this `http://dc17-flask-flask.apps.ose.0.rhtps.io`.
+this `http://dc17-flask-flask.apps.ocp.0.rhtps.io`.
 
 image::/images/openshift-flask-route.png[Flask Route,800,align="center"]
 
