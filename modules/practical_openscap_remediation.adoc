@@ -1,14 +1,13 @@
 == Remediation
 
-After reviewing the HTML report we can see that a lot of rules are failing. To put machine into
-compliance we have to perform a so-called “remediation” and in most cases also reboot the machine.
+After reviewing the HTML report we can see that a lot of rules are failing. To put machine into compliance we have to perform a so-called "remediation" and in most cases also reboot the machine.
 There are three types of remediation:
 
 === Online Remediation
 
-In online remediation the fix scripts are executed immediately after evaluation. For each and every rule that has a “fail” result a fix script will be run. Then the rule will be re-evaluated to verify that the machine is now indeed in compliance.
+In online remediation the fix scripts are executed immediately after evaluation. For each and every rule that has a "fail" result a fix script will be run. Then the rule will be re-evaluated to verify that the machine is now indeed in compliance.
 
-To enable online remediation, use the `--remediate`​ command-line option:
+To enable online remediation, use the `--remediate` command-line option:
 
 ```
 [workshop@serverX ~]$ sudo oscap xccdf eval --remediate --profile xccdf_org.ssgproject.content_profile_rht-ccp --results scan-xccdf-results.xml /usr/share/xml/scap/ssg/content/ssg-rhel7-ds.xml
@@ -30,7 +29,7 @@ In this next step, `oscap` generates the fix scripts based on the results of the
 [workshop@serverX ~]$ oscap xccdf generate fix --fix-type bash --result-id "" --output my-result-based-remediation.sh xccdf-results.xml
 ```
 
-To generate fixes based on a TestResult XCCDF file, we need to know the result-id of TestResult element from the XCCDF file that we would like to use. Using option `--result-id ""`​ is a trick to pick the first TestResult element from results file.
+To generate fixes based on a TestResult XCCDF file, we need to know the result-id of TestResult element from the XCCDF file that we would like to use. Using option `--result-id ""` is a trick to pick the first TestResult element from results file.
 To get the actual result-ids, you can issue following command:
 
 ```
@@ -94,7 +93,7 @@ You can customize the generate ansible playbook by changing the variables. Looki
       register: gpg_key_directory_permission
       check_mode: no
       tags:
-…
+...
 ```
 
 The advantage of profile-based remediations is their ease of deployment at scale. You can use tools such as Satellite 6 remote execution or Ansible Tower to deploy these playbooks on hundreds of machines at once.
