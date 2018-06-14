@@ -1,35 +1,11 @@
 == XCCDF Rule Results cheatsheet
 
-pass:: the target system (its particular component) satisfied all the
-conditions of the XCCDF rule
-fail:: the target system (its particular component) did not meet certain
-condition of the XCCDF rule. For simple rules (containing reference just
-to one OVAL check) this means relevant system property did not meet its
-expected value, for compound rules at least one OVAL check of the set
-didn’t succeed. Particular system property should be corrected and scan
-rerun.
-error:: the checking engine was not able to complete the rule evaluation
-due some reason (scanner run with insufficient privileges etc.).
-Therefore it is not possible to decide if particular system is compliant
-with the requested policy or not. Reason of the error should be further
-investigated, corrected, and scan rerun to obtain trustworthy report.
-unknown:: a problem different from the error was encountered during rule
-evaluation (the checking engine might have presented the result and was
-not understood by the tool)
-notapplicable:: particular rule is not applicable to be tested on this
-system (system component / property scanned by this rule is not present
-on this system)
-notchecked:: relevant XCCDF rule does not have its OVAL counterpart
-defined (therefore it was not possible to obtain actual system’s property
-state), or the OVAL check is written in language not recognized /
-supported by the checking engine, or rule was not checked because it
-depends on fulfillment of some previous “parent” rule, and this parent
-rule didn’t evaluate to success earlier
-notselected:: particular rule is not selected for evaluation in the XCCDF
-benchmark
-informational:: the rule was checked, but the obtained data is rather
-meant to be an information to share, than a comparison of actual system’s
-property with expected policy value
-fixed:: previously the rule evaluated to failure, but has been corrected
-already
-
+pass:: the target system (its particular component) satisfied all the conditions of the XCCDF rule
+fail:: the target system (its particular component) did not meet certain condition of the XCCDF rule. For simple rules (containing reference just to one OVAL check) this means relevant system property did not meet its expected value, for compound rules at least one OVAL check of the set didn't succeed. Particular system property should be corrected and scan rerun.
+error:: the checking engine was not able to complete the rule evaluation due some reason (scanner run with insufficient privileges etc.).  Therefore it is not possible to decide if particular system is compliant with the requested policy or not. Reason of the error should be further investigated, corrected, and scan rerun to obtain trustworthy report.
+unknown:: a problem different from the error was encountered during rule evaluation (the checking engine might have presented the result and was not understood by the tool)
+notapplicable:: particular rule is not applicable to be tested on this system (system component / property scanned by this rule is not present on this system)
+notchecked:: relevant XCCDF rule does not have its OVAL counterpart defined (therefore it was not possible to obtain actual system's property state), or the OVAL check is written in language not recognized / supported by the checking engine, or rule was not checked because it depends on fulfillment of some previous "parent" rule, and this parent rule didn't evaluate to success earlier
+notselected:: particular rule is not selected for evaluation in the XCCDF benchmark 
+informational:: the rule was checked, but the obtained data is rather meant to be an information to share, than a comparison of actual system's property with expected policy value
+fixed:: previously the rule evaluated to failure, but has been corrected already
