@@ -40,7 +40,7 @@ The `ssg-rhel7-ds.xml` file which is a Source DataStream with XCCDF 1.2 built in
 ```
 [workshop@serverX ~]$ oscap xccdf eval --profile xccdf_org.ssgproject.content_profile_rht-ccp --results-arf arf.xml --report report.html --oval-results /usr/share/xml/scap/ssg/content/ssg-rhel7-ds.xml
 
-WARNING: This content points out to the remote resources. Use `--fetch-remote-resources' option to download them.
+WARNING: This content points out to the remote resources. Use '--fetch-remote-resources' option to download them.
 WARNING: Skipping https://www.redhat.com/security/data/oval/com.redhat.rhsa-RHEL7.xml.bz2 file which is referenced from XCCDF content
 
 Title   Ensure /tmp Located On Separate Partition
@@ -52,10 +52,10 @@ Title   Ensure /var Located On Separate Partition
 Rule    xccdf_org.ssgproject.content_rule_partition_for_var
 Ident   CCE-26404-4
 Result  fail
-…
+...
 ```
 
-Let us now look at the generated HTML report. Copy it to your local machine, and open it using a browser, for example, Firefox. Open a terminal in your local machine and run the commands below replacing SSHKEY, RHPDSUSER, and GUID with your values:
+Let us now look at the generated HTML report:
 
 ```
 [workshop@serverX ~]$ python -m SimpleHTTPServer 8080
