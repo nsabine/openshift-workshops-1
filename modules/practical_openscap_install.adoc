@@ -4,8 +4,8 @@ Install the OpenSCAP scanner and the SCAP Security Guide packages:
 
 ```
 [workshop@serverX ~]$ yum -y install openscap scap-security-guide
-…
-DDependencies Resolved
+...
+Dependencies Resolved
 ========================================================================================================
  Package                  Arch        Version               Repository                             Size
 ========================================================================================================
@@ -27,7 +27,7 @@ Downloading packages:
 (4/4): xml-common-0.6.3-39.el7.noarch.rpm                                        |  26 kB  00:00:00
 --------------------------------------------------------------------------------------------------------
 Total                                                                   6.1 MB/s | 6.5 MB  00:00:01
-…
+...
 Complete!
 ```
 
@@ -43,6 +43,6 @@ In case you want to run Ansible playbooks we will generate later you also need A
 ========================================================================================================
 Installing:
  ansible                   noarch      2.5.3-1.el7          rhel-7-server-extras-rpms              9.0 M
-…
+...
 Complete!
 ```
