@@ -92,6 +92,7 @@ image::images/PRACTICAL_OPENSCAP_EVALUATION_CHARACTERISTICS_IMAGE.png[OpenSCAP R
 
 image::/images/PRACTICAL_OPENSCAP_RULE_OVERVIEW_IMAGE.png[Rule Overview,800,align="center"]
 
-Note: There is a cheatsheet at end of these instructions to help you quickly remember the meaning of each XCCDF Rule result.
+[NOTE]
+There is a cheatsheet at end of these instructions to help you quickly remember the meaning of each XCCDF Rule result.
 
 image::/images/PRACTICAL_OPENSCAP_SET_PASSWORD_MINIMUM_AGE_IMAGE.png[Rule Detail,800,align="center"]

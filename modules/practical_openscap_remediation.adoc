@@ -41,7 +41,7 @@ Result ID: xccdf_org.ssgproject.content_profile_rht-ccp
 Another option is to generate a remediation script based on a profile. This will include a fix for every single rule in the profile, regardless or whether it would pass or fail on the target machine. This work well because all fixes are supposed to be idempotent - if you run them repeatedly they won't do any
 changes to the machine. Profile-based remediation allows very powerful fix deployment using either bash or ansible.
 
-bash:
+.bash
 ```
 [workshop@serverX ~]$ oscap xccdf generate fix --fix-type bash --profile xccdf_org.ssgproject.content_profile_rht-ccp --output my-remediation-script.sh /usr/share/xml/scap/ssg/content/ssg-rhel7-ds.xml
 
@@ -50,7 +50,7 @@ bash:
 [workshop@serverX ~]$ sudo ./my-remediation-script.sh
 ```
 
-ansible:
+.ansible
 ```
 [workshop@serverX ~]$ oscap xccdf generate fix --fix-type ansible --profile xccdf_org.ssgproject.content_profile_rht-ccp --output my-remediation-playbook.yml /usr/share/xml/scap/ssg/content/ssg-rhel7-ds.xml
 
