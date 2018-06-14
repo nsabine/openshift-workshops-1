@@ -29,14 +29,4 @@ modules:
     - practical_openscap_intro
     - practical_openscap_install
     - practical_openscap_basics
-    - environment
-    - deploy-openshift
-    - simple-python
-    - scaling
-    - kernel-capabilities
-    - selinux
-    - atomic-scan
-    - s2i-overview
-    - codechanges
-    - ci-cd-overview
-    - pipelines
+    - practical_openscap_scanning

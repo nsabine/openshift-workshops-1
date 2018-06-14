@@ -103,3 +103,5 @@ practical_openscap_install:
   name: Practical OpenSCAP - Install
 practical_openscap_basics:
   name: Practical OpenSCAP - Basics
+practical_openscap_scanning:
+  name: Practical OpenSCAP - Scanning and Reporting

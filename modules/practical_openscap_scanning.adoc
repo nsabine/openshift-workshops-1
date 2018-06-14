@@ -1,0 +1,99 @@
+== Scanning and reporting
+
+We are now ready to perform our first baseline scan. From the information provided, run an actual scan from the terminal now that we have determined which security policy and profile we want to use.
+
+```
+[workshop@serverX ~]$ oscap xccdf eval --profile xccdf_org.ssgproject.content_profile_rht-ccp --results-arf /tmp/arf.xml --report /tmp/report.html --oval-results /usr/share/xml/scap/ssg/content/ssg-rhel7-ds.xml
+```
+
+The options can be broken down as follows:
+
+```
+$ oscap xccdf eval \
+--profile xccdf_org.ssgproject.content_profile_rht-ccp \
+--results-arf /tmp/arf.xml \
+--report /tmp/report.html \
+--oval-results \
+/usr/share/xml/scap/ssg/content/ssg-rhel7-ds.xml
+```
+xccdf eval::
+- The oscap tool calls on the xccdf module.
+- The xccdf module is used with the eval operation which then allows us to perform the evaluation. The XCCDF module will try to load all OVAL Definition files referenced from XCCDF automatically. In addition to being able to load XCCDF file it can also load Source DataStreams.
+--profile PROFILE::
+Select a particular profile from the data stream file (INPUT file) at the end of the command.
+--results-arf FILE::
+This option tells oscap that we want the results stored as an Asset Reporting Format (ARF) in a file called arf.xml. It is recommended to use this option instead of `--results` when dealing with datastreams. This is because `--results` will write XCCDF results into the FILE. The ARF file is a more complete results file than plain XCCDF results file.
+--report FILE::
+Write HTML report into FILE. You also have to specify a `--results/--results-arf` for this feature to work. This is a human-readable report as opposed to the machine readable
+ARF.
+--oval-results::
+Generate  OVAL  Result file for each OVAL session used for evaluation. File with name `original-oval-definitions-filename.result.xml` will be generated for each referenced OVAL file. This option (with conjunction with the `--report` option) also enables inclusion of additional OVAL information in the XCCDF report.
+/usr/share/xml/scap/ssg/content/ssg-rhel7-ds.xml ::
+This is the `INPUT_FILE` needed to perform the evaluation. Can be XCCDF or Source DataStream. You are strongly encouraged to use Source DataStream instead of plain XCCDF files.
+
+
+The `ssg-rhel7-ds.xml` file which is a Source DataStream with XCCDF 1.2 built inside. The advantage of Source DataStream is that you have everything you need bundled in one file - XCCDF, OVAL(s), CPE(s), and it supports digital signatures. The evaluation process usually takes a few minutes, depending on the number of selected rules.
+
+`oscap` will also provide you an overview of results after it’s finished, and you will find reports saved and available for review in your current working directory.
+
+
+```
+[workshop@serverX ~]$ oscap xccdf eval --profile xccdf_org.ssgproject.content_profile_rht-ccp --results-arf arf.xml --report report.html --oval-results /usr/share/xml/scap/ssg/content/ssg-rhel7-ds.xml
+
+WARNING: This content points out to the remote resources. Use `--fetch-remote-resources' option to download them.
+WARNING: Skipping https://www.redhat.com/security/data/oval/com.redhat.rhsa-RHEL7.xml.bz2 file which is referenced from XCCDF content
+
+Title   Ensure /tmp Located On Separate Partition
+Rule    xccdf_org.ssgproject.content_rule_partition_for_tmp
+Ident   CCE-27173-4
+Result  fail
+
+Title   Ensure /var Located On Separate Partition
+Rule    xccdf_org.ssgproject.content_rule_partition_for_var
+Ident   CCE-26404-4
+Result  fail
+…
+```
+
+Let us now look at the generated HTML report. Copy it to your local machine, and open it using a browser, for example, Firefox. Open a terminal in your local machine and run the commands below replacing SSHKEY, RHPDSUSER, and GUID with your values:
+
+```
+[workshop@serverX ~]$ python -m SimpleHTTPServer 8080
+```
+
+Now open a web browser to:
+http://${IP_ADDRESS}:8080/report.html
+
+Control-C to exit the python server session.
+
+
+
+image::images/PRACTICAL_OPENSCAP_EVALUATION_CHARACTERISTICS_IMAGE.png[OpenSCAP Report,800,align="center"]
+
+
+1. Evaluation Characteristics:
+- Target Machine: What server or container was scanned
+- Benchmark URL: The content of XCCDF Benchmark is mostly text. This includes titles, descriptions, CPEs, references to CVEs, CCEs, etc. All of this metadata comes together to form a nice checklist.
+- Addresses: IPv4, IPv6, addresses assigned to the network. These include Public, Private, and Loopback. The media access control (MAC) address are also displayed.
+2. Compliance and Scoring:
+- A red or green banner will be presented with the number of satisfied or not satisfied conditions.
+- The Rule result breakdown provides a visual on the number of rules passed, failed, and not checked (other).
+- Failed rules by severity breakdown visual is a convenient way to see how many rules failed based on High, Medium, and Low definitions.
+3. Score:
+- Scoring will give points to rules and the XCCDF interpreter will sum the scores of all rules to give a final score to the “compliance” state of the system. This is represented by
+a table outlining the Scoring system used.
+- XCCDF has four scoring models. Each apply computation of XCCDF scores differently.
+* The Default Model: `urn:xccdf:scoring:default`
+* The Flat Model: `urn:xccdf:scoring:flat`
+* The Flat Unweighted Model: `urn:xccdf:scoring:flat-unweighted`
+* The Absolute Model: `urn:xccdf:scoring:absolute`
+4. Rule Overview:
+- This section is used to quickly filter out which content you would like to review.
+
+
+
+image::/images/PRACTICAL_OPENSCAP_RULE_OVERVIEW_IMAGE.png[Rule Overview,800,align="center"]
+
+Note: There is a cheatsheet at end of these instructions to help you quickly remember the meaning of each XCCDF Rule result.
+
+image::/images/PRACTICAL_OPENSCAP_SET_PASSWORD_MINIMUM_AGE_IMAGE.png[Rule Detail,800,align="center"]
