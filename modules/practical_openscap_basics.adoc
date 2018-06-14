@@ -1,0 +1,185 @@
+== Basics of OpenSCAP CLI
+
+First let us verify the installation of OpenSCAP by running its version command:
+
+```
+[workshop@serverX ~]$ oscap -V
+OpenSCAP command line tool (oscap) 1.2.16
+Copyright 2009--2017 Red Hat Inc., Durham, North Carolina.
+==== Supported specifications ====
+XCCDF Version: 1.2
+OVAL Version: 5.11.1
+CPE Version: 2.3
+CVSS Version: 2.0
+CVE Version: 2.0
+Asset Identification Version: 1.1
+Asset Reporting Format Version: 1.1
+CVRF Version: 1.1
+==== Capabilities added by auto-loaded plugins ====
+No plugins have been auto-loaded...
+==== Paths ====
+Schema files: /usr/share/openscap/schemas
+Default CPE files: /usr/share/openscap/cpe
+Probes: /usr/libexec/openscap
+==== Inbuilt CPE names ====
+Red Hat Enterprise Linux - cpe:/o:redhat:enterprise_linux
+Red Hat Enterprise Linux 5 - cpe:/o:redhat:enterprise_linux:5
+Red Hat Enterprise Linux 6 - cpe:/o:redhat:enterprise_linux:6
+Red Hat Enterprise Linux 7 - cpe:/o:redhat:enterprise_linux:7
+…
+==== Supported OVAL objects and associated OpenSCAP probes ====
+OVAL family   OVAL object                  OpenSCAP probe
+----------    ----------                   ----------
+(null)        system_info                  probe_system_info
+independent   family                       probe_family
+independent   filehash                     probe_filehash
+independent   environmentvariable          probe_environmentvariable
+independent   textfilecontent54            probe_textfilecontent54
+independent   textfilecontent              probe_textfilecontent
+independent   variable                     probe_variable
+independent   xmlfilecontent               probe_xmlfilecontent
+independent   environmentvariable58        probe_environmentvariable58
+independent   filehash58                   probe_filehash58
+linux         inetlisteningservers         probe_inetlisteningservers
+linux         rpminfo                      probe_rpminfo
+linux         partition                    probe_partition
+linux         iflisteners                  probe_iflisteners
+linux         rpmverify                    probe_rpmverify
+linux         rpmverifyfile                probe_rpmverifyfile
+linux         rpmverifypackage             probe_rpmverifypackage
+linux         selinuxboolean               probe_selinuxboolean
+linux         selinuxsecuritycontext       probe_selinuxsecuritycontext
+linux         systemdunitproperty          probe_systemdunitproperty
+linux         systemdunitdependency        probe_systemdunitdependency
+unix          file                         probe_file
+unix          interface                    probe_interface
+unix          password                     probe_password
+unix          process                      probe_process
+unix          runlevel                     probe_runlevel
+unix          shadow                       probe_shadow
+unix          uname                        probe_uname
+unix          xinetd                       probe_xinetd
+unix          sysctl                       probe_sysctl
+unix          process58                    probe_process58
+unix          fileextendedattribute        probe_fileextendedattribute
+unix          routingtable                 probe_routingtable
+unix          symlink                      probe_symlink
+
+```
+
+The oscap -V command is great for reviewing what specifications versions, builtin CPE names (Common Platform Enumeration - essentially standardized platform IDs), supported OVAL objects and associated OpenSCAP probes are installed.
+
+Let us move onto more productive uses of the command-line interface. The OpenSCAP CLI is split into sub-modules and each performs a very specialized task. E.g.: the “info” sub-module can be used to examine SCAP related files.
+
+Locate the SCAP content installed on the system from the SCAP Security Guide package:
+```
+[workshop@serverX ~]$ rpm -ql scap-security-guide | grep content
+/usr/share/xml/scap/ssg/content
+/usr/share/xml/scap/ssg/content/ssg-firefox-cpe-dictionary.xml
+/usr/share/xml/scap/ssg/content/ssg-firefox-cpe-oval.xml
+/usr/share/xml/scap/ssg/content/ssg-firefox-ds.xml
+/usr/share/xml/scap/ssg/content/ssg-firefox-ocil.xml
+/usr/share/xml/scap/ssg/content/ssg-firefox-oval.xml
+/usr/share/xml/scap/ssg/content/ssg-firefox-xccdf.xml
+/usr/share/xml/scap/ssg/content/ssg-jre-cpe-dictionary.xml
+/usr/share/xml/scap/ssg/content/ssg-jre-cpe-oval.xml
+/usr/share/xml/scap/ssg/content/ssg-jre-ds.xml
+/usr/share/xml/scap/ssg/content/ssg-jre-ocil.xml
+/usr/share/xml/scap/ssg/content/ssg-jre-oval.xml
+/usr/share/xml/scap/ssg/content/ssg-jre-xccdf.xml
+/usr/share/xml/scap/ssg/content/ssg-rhel6-cpe-dictionary.xml
+/usr/share/xml/scap/ssg/content/ssg-rhel6-cpe-oval.xml
+/usr/share/xml/scap/ssg/content/ssg-rhel6-ds.xml
+/usr/share/xml/scap/ssg/content/ssg-rhel6-ocil.xml
+/usr/share/xml/scap/ssg/content/ssg-rhel6-oval.xml
+/usr/share/xml/scap/ssg/content/ssg-rhel6-xccdf.xml
+/usr/share/xml/scap/ssg/content/ssg-rhel7-cpe-dictionary.xml
+/usr/share/xml/scap/ssg/content/ssg-rhel7-cpe-oval.xml
+/usr/share/xml/scap/ssg/content/ssg-rhel7-ds.xml
+/usr/share/xml/scap/ssg/content/ssg-rhel7-ocil.xml
+/usr/share/xml/scap/ssg/content/ssg-rhel7-oval.xml
+/usr/share/xml/scap/ssg/content/ssg-rhel7-xccdf.xml
+```
+
+Let us run the “oscap info” command on the RHEL7 SCAP datastream file - ssg-rhel7-ds.xml:
+
+```
+[workshop@serverX ~]$ oscap info /usr/share/xml/scap/ssg/content/ssg-rhel7-ds.xml
+Document type: Source Data Stream
+Imported: 2018-04-27T13:03:29
+Stream: scap_org.open-scap_datastream_from_xccdf_ssg-rhel7-xccdf-1.2.xml
+Generated: (null)
+Version: 1.2
+Checklists:
+        Ref-Id: scap_org.open-scap_cref_ssg-rhel7-xccdf-1.2.xml
+                Status: draft
+                Generated: 2018-04-27
+                Resolved: true
+                Profiles:
+                        Title: Standard System Security Profile
+                                Id: xccdf_org.ssgproject.content_profile_standard
+                        Title: PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7
+                                Id: xccdf_org.ssgproject.content_profile_pci-dss
+                        Title: C2S for Red Hat Enterprise Linux 7
+                                Id: xccdf_org.ssgproject.content_profile_C2S
+                        Title: Red Hat Corporate Profile for Certified Cloud Providers (RH CCP)
+                                Id: xccdf_org.ssgproject.content_profile_rht-ccp
+                        Title: Common Profile for General-Purpose Systems
+                                Id: xccdf_org.ssgproject.content_profile_common
+                        Title: DISA STIG for Red Hat Enterprise Linux 7
+                                Id: xccdf_org.ssgproject.content_profile_stig-rhel7-disa
+                        Title: STIG for Red Hat Virtualization Hypervisor
+                                Id: xccdf_org.ssgproject.content_profile_stig-rhevh-upstream
+                        Title: United States Government Configuration Baseline (USGCB / STIG) - DRAFT
+                                Id: xccdf_org.ssgproject.content_profile_ospp-rhel7
+                        Title: Criminal Justice Information Services (CJIS) Security Policy
+                                Id: xccdf_org.ssgproject.content_profile_cjis-rhel7-server
+                        Title: Standard Docker Host Security Profile
+                                Id: xccdf_org.ssgproject.content_profile_docker-host
+                        Title: Unclassified Information in Non-federal Information Systems and Organizations (NIST 800-171)
+                                Id: xccdf_org.ssgproject.content_profile_nist-800-171-cui
+                Referenced check files:
+                        ssg-rhel7-oval.xml
+                                system: http://oval.mitre.org/XMLSchema/oval-definitions-5
+                        ssg-rhel7-ocil.xml
+                                system: http://scap.nist.gov/schema/ocil/2
+                        https://www.redhat.com/security/data/oval/com.redhat.rhsa-RHEL7.xml.bz2
+                                system: http://oval.mitre.org/XMLSchema/oval-definitions-5
+        Ref-Id: scap_org.open-scap_cref_ssg-rhel7-pcidss-xccdf-1.2.xml
+                Status: draft
+                Generated: 2018-04-27
+                Resolved: true
+                Profiles:
+                        Title: PCI-DSS v3 Control Baseline for Red Hat Enterprise Linux 7
+                                Id: xccdf_org.ssgproject.content_profile_pci-dss_centric
+                Referenced check files:
+                        ssg-rhel7-oval.xml
+                                system: http://oval.mitre.org/XMLSchema/oval-definitions-5
+                        ssg-rhel7-ocil.xml
+                                system: http://scap.nist.gov/schema/ocil/2
+                        https://www.redhat.com/security/data/oval/com.redhat.rhsa-RHEL7.xml.bz2
+                                system: http://oval.mitre.org/XMLSchema/oval-definitions-5
+Checks:
+        Ref-Id: scap_org.open-scap_cref_ssg-rhel7-oval.xml
+        Ref-Id: scap_org.open-scap_cref_ssg-rhel7-ocil.xml
+        Ref-Id: scap_org.open-scap_cref_ssg-rhel7-cpe-oval.xml
+        Ref-Id: scap_org.open-scap_cref_ssg-rhel7-oval.xml000
+        Ref-Id: scap_org.open-scap_cref_ssg-rhel7-ocil.xml000
+Dictionaries:
+        Ref-Id: scap_org.open-scap_cref_ssg-rhel7-cpe-dictionary.xml
+```
+
+Each SCAP datastream can have multiple profiles which provide policies implemented according to specific security baselines. Every profile can select different rules and use different parameters.
+
+Examples of these profiles are PCI-DSS, DISA STIG, USGCB and others. One of the capabilities of oscap is to display information about the SCAP contents within a file. When examining an XCCDF document or a SCAP data stream, generally, the most useful information is about profiles.
+
+Example of a profile is the Certified Cloud Providers (CCP). We will use this profile going forward.
+
+```
+Profiles:
+…
+Title: Red Hat Corporate Profile for Certified Cloud Providers (RH CCP)
+Id: xccdf_org.ssgproject.content_profile_rht-ccp
+…
+```
+

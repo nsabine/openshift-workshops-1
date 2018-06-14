@@ -28,6 +28,7 @@ modules:
   activate:
     - practical_openscap_intro
     - practical_openscap_install
+    - practical_openscap_basics
     - environment
     - deploy-openshift
     - simple-python

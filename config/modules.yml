@@ -101,3 +101,5 @@ practical_openscap_intro:
   name: Practical OpenSCAP: Intro
 practical_openscap_install:
   name: Practical OpenSCAP: Install
+practical_openscap_basics:
+  name: Practical OpenSCAP: Basics
