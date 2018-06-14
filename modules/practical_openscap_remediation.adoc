@@ -33,7 +33,7 @@ To generate fixes based on a TestResult XCCDF file, we need to know the result-i
 
 ```
 [workshop@serverX ~]$ oscap info xccdf-results.xml | grep "Result ID"
-Result ID: xccdf_org…ssgproject.content_profile_rht-ccp
+Result ID: xccdf_org.ssgproject.content_profile_rht-ccp
 ```
 
 ===  Profile-based remediation
