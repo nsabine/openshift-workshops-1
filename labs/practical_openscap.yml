@@ -1,0 +1,40 @@
+name: Practical OpenSCAP Workshop
+logo: redhat.png
+vars:
+  DOWNLOAD_CLIENT_WINDOWS: "https://github.com/openshift/origin/releases/download/v3.6.0/openshift-origin-client-tools-v3.6.0-c4dd4cf-windows.zip"
+  DOWNLOAD_CLIENT_MAC: "https://github.com/openshift/origin/releases/download/v3.6.0/openshift-origin-client-tools-v3.6.0-c4dd4cf-mac.zip"
+  DOWNLOAD_CLIENT_LIN64: "https://github.com/openshift/origin/releases/download/v3.6.0/openshift-origin-client-tools-v3.6.0-c4dd4cf-linux-64bit.tar.gz"
+  ENVIRONMENT: "Amazon EC2"
+  CONSOLE_ADDRESS: "workshop.xx.rhtps.io:8443"
+  USER_NAME: "ec2-user"
+  USER_PASSWORD: "Redhat1!"
+  EXPLORE_PROJECT_NAME: "user"
+  USER_SUFFIX: "XXX"
+  ROUTER_ADDRESS: "apps.ose.xx.rhtps.io "
+  METRICS_ENABLED: false
+  OPENSHIFT_NAME: "OpenShift Container Platform"
+  OPENSHIFT_SHORTNAME: "OCP"
+  OPENSHIFT_VERSION: "3.7"
+  OC_VERSION: "1.6.0"
+  PARKSMAP_IMAGENAME: "parksmap-py"
+  PARKSMAP_VERSION: "1.0.0"
+  PARKSMAP_PY: true
+  NATIONALPARKS_VERSION: "1.0.0"
+  MLBPARKS_VERSION: "1.0.0"
+
+  DOCS_URL: "docs.openshift.com/container-platform"
+
+modules:
+  activate:
+    - practical_openscap_intro
+    - environment
+    - deploy-openshift
+    - simple-python
+    - scaling
+    - kernel-capabilities
+    - selinux
+    - atomic-scan
+    - s2i-overview
+    - codechanges
+    - ci-cd-overview
+    - pipelines

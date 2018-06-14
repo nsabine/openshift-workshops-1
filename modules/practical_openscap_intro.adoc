@@ -1,0 +1,24 @@
+## Practical OpenSCAP
+
+== Abstract
+OpenSCAP is a family of open source SCAP tools and content that help users create and evaluate standard security checklists for enterprise systems. Natively shipping in Red Hat Enterprise Linux, OpenSCAP provides practical security hardening advice for Red Hat technologies and links to compliance requirements, making deployment activities like certification and accreditation easier.
+
+== Audience / Intro / Prerequisites
+This lab is geared towards Linux system administrators that have completed the Red Hat Certified System Administrator (RHCSA), the Red Hat Certified Engineer (RHCE) certification or have a similar
+skillset. Attendees, during this session, will:
+
+- Develop a foundational knowledge around the Security Content Automation Protocol
+- Go hands-on with OpenSCAP from the command-line.
+- Understand the OpenSCAP tool and security standards used to generate reports and perform remediation
+
+== Before you begin
+
+You should have a *Red Hat Enterprise Linux 7* instance deployed.  Access the terminal by browsing to:
+
+  URL: https://${IP_ADDRESS}:8443
+  Username: workshop
+  Password: redhat
+
+== End Result
+
+At this point, everyone should have logged into your instance.  If you haven't, let us know so we can get you fixed up.
