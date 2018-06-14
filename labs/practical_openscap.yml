@@ -31,3 +31,4 @@ modules:
     - practical_openscap_basics
     - practical_openscap_scanning
     - practical_openscap_remediation
+    - practical_openscap_vulnerability_scanning
