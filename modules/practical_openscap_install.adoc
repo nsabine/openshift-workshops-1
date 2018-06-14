@@ -31,7 +31,7 @@ Total                                                                   6.1 MB/s
 Complete!
 ```
 
-The oscap tool does not provide any security policies on its own — you have to obtain the rule sets from a separate package. On Red Hat Enterprise Linux, default policies are provided by SCAP Security Guide (SSG).
+The oscap tool does not provide any security policies on its own - you have to obtain the rule sets from a separate package. On Red Hat Enterprise Linux, default policies are provided by SCAP Security Guide (SSG).
 
 === Install Ansible
 
