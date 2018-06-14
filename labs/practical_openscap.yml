@@ -27,6 +27,7 @@ vars:
 modules:
   activate:
     - practical_openscap_intro
+    - practical_openscap_install
     - environment
     - deploy-openshift
     - simple-python

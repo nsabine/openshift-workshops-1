@@ -1,0 +1,48 @@
+== Install OpenSCAP
+
+Install the OpenSCAP scanner and the SCAP Security Guide packages:
+
+```
+[workshop@serverX ~]$ yum -y install openscap scap-security-guide
+…
+DDependencies Resolved
+========================================================================================================
+ Package                  Arch        Version               Repository                             Size
+========================================================================================================
+Installing:
+ openscap                 x86_64      1.2.16-8.el7_5        rhui-REGION-rhel-server-releases      3.8 M
+ scap-security-guide      noarch      0.1.36-9.el7_5        rhui-REGION-rhel-server-releases      2.6 M
+Installing for dependencies:
+ openscap-scanner         x86_64      1.2.16-8.el7_5        rhui-REGION-rhel-server-releases       61 k
+ xml-common               noarch      0.6.3-39.el7          rhui-REGION-rhel-server-releases       26 k
+Transaction Summary
+========================================================================================================
+Install  2 Packages (+2 Dependent packages)
+Total download size: 6.5 M
+Installed size: 122 M
+Downloading packages:
+(1/4): openscap-scanner-1.2.16-8.el7_5.x86_64.rpm                                |  61 kB  00:00:00
+(2/4): openscap-1.2.16-8.el7_5.x86_64.rpm                                        | 3.8 MB  00:00:00
+(3/4): scap-security-guide-0.1.36-9.el7_5.noarch.rpm                             | 2.6 MB  00:00:00
+(4/4): xml-common-0.6.3-39.el7.noarch.rpm                                        |  26 kB  00:00:00
+--------------------------------------------------------------------------------------------------------
+Total                                                                   6.1 MB/s | 6.5 MB  00:00:01
+…
+Complete!
+```
+
+The oscap tool does not provide any security policies on its own — you have to obtain the rule sets from a separate package. On Red Hat Enterprise Linux, default policies are provided by SCAP Security Guide (SSG).
+
+=== Install Ansible
+
+In case you want to run Ansible playbooks we will generate later you also need Ansible.
+```
+[workshop@serverX ~]$ sudo yum -y install ansible
+========================================================================================================
+ Package                   Arch        Version              Repository                             Size
+========================================================================================================
+Installing:
+ ansible                   noarch      2.5.3-1.el7          rhel-7-server-extras-rpms              9.0 M
+…
+Complete!
+```
