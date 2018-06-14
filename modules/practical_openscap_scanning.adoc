@@ -3,7 +3,7 @@
 We are now ready to perform our first baseline scan. From the information provided, run an actual scan from the terminal now that we have determined which security policy and profile we want to use.
 
 ```
-[workshop@serverX ~]$ oscap xccdf eval --profile xccdf_org.ssgproject.content_profile_rht-ccp --results-arf /tmp/arf.xml --report /tmp/report.html --oval-results /usr/share/xml/scap/ssg/content/ssg-rhel7-ds.xml
+[workshop@serverX ~]$ oscap xccdf eval --profile xccdf_org.ssgproject.content_profile_rht-ccp --results-arf arf.xml --report report.html --oval-results /usr/share/xml/scap/ssg/content/ssg-rhel7-ds.xml
 ```
 
 The options can be broken down as follows:
