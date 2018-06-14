@@ -67,7 +67,7 @@ unix          symlink                      probe_symlink
 
 ```
 
-The oscap -V command is great for reviewing what specifications versions, builtin CPE names (Common Platform Enumeration - essentially standardized platform IDs), supported OVAL objects and associated OpenSCAP probes are installed.
+The `oscap -V` command is great for reviewing what specifications versions, builtin CPE names (Common Platform Enumeration - essentially standardized platform IDs), supported OVAL objects and associated OpenSCAP probes are installed.
 
 Let us move onto more productive uses of the command-line interface. The OpenSCAP CLI is split into sub-modules and each performs a very specialized task. E.g.: the "info" sub-module can be used to examine SCAP related files.
 
@@ -101,7 +101,7 @@ Locate the SCAP content installed on the system from the SCAP Security Guide pac
 /usr/share/xml/scap/ssg/content/ssg-rhel7-xccdf.xml
 ```
 
-Let us run the `oscap info` command on the RHEL7 SCAP datastream file - ssg-rhel7-ds.xml:
+Let us run the `oscap info` command on the RHEL7 SCAP datastream file - `ssg-rhel7-ds.xml`:
 
 ```
 [workshop@serverX ~]$ oscap info /usr/share/xml/scap/ssg/content/ssg-rhel7-ds.xml
