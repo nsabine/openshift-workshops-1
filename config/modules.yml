@@ -97,3 +97,7 @@ run-as-non-root:
   name: Running a container as a non Root user
 gcp-bigquery:
   name: Integrating with Google Compute Service BigQuery
+practical_openscap_intro:
+  name: Practical OpenSCAP: Intro
+practical_openscap_install:
+  name: Practical OpenSCAP: Install
