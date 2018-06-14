@@ -29,8 +29,7 @@ In this next step, `oscap` generates the fix scripts based on the results of the
 [workshop@serverX ~]$ oscap xccdf generate fix --fix-type bash --result-id "" --output my-result-based-remediation.sh xccdf-results.xml
 ```
 
-To generate fixes based on a TestResult XCCDF file, we need to know the result-id of TestResult element from the XCCDF file that we would like to use. Using option `--result-id ""` is a trick to pick the first TestResult element from results file.
-To get the actual result-ids, you can issue following command:
+To generate fixes based on a TestResult XCCDF file, we need to know the result-id of TestResult element from the XCCDF file that we would like to use. Using option `--result-id ""` is a trick to pick the first TestResult element from results file.  To get the actual result-ids, you can issue following command:
 
 ```
 [workshop@serverX ~]$ oscap info xccdf-results.xml | grep "Result ID"
@@ -39,7 +38,7 @@ Result ID: xccdf_org…ssgproject.content_profile_rht-ccp
 
 ===  Profile-based remediation
 
-Another option is to generate a remediation script based on a profile. This will include a fix for every single rule in the profile, regardless or whether it would pass or fail on the target machine. This work well because all fixes are supposed to be idempotent - if you run them repeatedly they won’t do any
+Another option is to generate a remediation script based on a profile. This will include a fix for every single rule in the profile, regardless or whether it would pass or fail on the target machine. This work well because all fixes are supposed to be idempotent - if you run them repeatedly they won't do any
 changes to the machine. Profile-based remediation allows very powerful fix deployment using either bash or ansible.
 
 bash:
@@ -70,7 +69,7 @@ You can customize the generate ansible playbook by changing the variables. Looki
 #
 # Ansible remediation role for profile xccdf_org.ssgproject.content_profile_rht-ccp
 # Profile Title:  Red Hat Corporate Profile for Certified Cloud Providers (RH CCP)
-…
+...
 ###############################################################################
  - hosts: all
    vars:
