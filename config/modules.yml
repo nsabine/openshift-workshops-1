@@ -98,16 +98,16 @@ run-as-non-root:
 gcp-bigquery:
   name: Integrating with Google Compute Service BigQuery
 practical_openscap_intro:
-  name: Practical OpenSCAP - Intro
+  name: Intro
 practical_openscap_install:
-  name: Practical OpenSCAP - Install
+  name: Install
 practical_openscap_basics:
-  name: Practical OpenSCAP - Basics
+  name: Basics
 practical_openscap_scanning:
-  name: Practical OpenSCAP - Scanning and Reporting
+  name: Scanning and Reporting
 practical_openscap_remediation:
-  name: Practical OpenSCAP - Remediation
+  name: Remediation
 practical_openscap_vulnerability_scanning:
-  name: Practical OpenSCAP - Vulnerability Scanning
+  name: Vulnerability Scanning
 practical_openscap_xccdf_cheatsheet:
-  name: Practical OpenSCAP - XCCDF Rule Cheatsheet
+  name: XCCDF Rule Cheatsheet
