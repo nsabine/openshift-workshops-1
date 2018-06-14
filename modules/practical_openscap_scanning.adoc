@@ -24,8 +24,7 @@ Select a particular profile from the data stream file (INPUT file) at the end of
 --results-arf FILE::
 This option tells oscap that we want the results stored as an Asset Reporting Format (ARF) in a file called arf.xml. It is recommended to use this option instead of `--results` when dealing with datastreams. This is because `--results` will write XCCDF results into the FILE. The ARF file is a more complete results file than plain XCCDF results file.
 --report FILE::
-Write HTML report into FILE. You also have to specify a `--results/--results-arf` for this feature to work. This is a human-readable report as opposed to the machine readable
-ARF.
+Write HTML report into FILE. You also have to specify a `--results/--results-arf` for this feature to work. This is a human-readable report as opposed to the machine readable ARF.
 --oval-results::
 Generate  OVAL  Result file for each OVAL session used for evaluation. File with name `original-oval-definitions-filename.result.xml` will be generated for each referenced OVAL file. This option (with conjunction with the `--report` option) also enables inclusion of additional OVAL information in the XCCDF report.
 /usr/share/xml/scap/ssg/content/ssg-rhel7-ds.xml ::
