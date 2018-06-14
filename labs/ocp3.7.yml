@@ -1,4 +1,4 @@
-name: OpenShift 3.7 Workshop
+name: OpenShift Workshop
 logo: redhat.png
 vars:
   DOWNLOAD_CLIENT_WINDOWS: "https://github.com/openshift/origin/releases/download/v3.6.0/openshift-origin-client-tools-v3.6.0-c4dd4cf-windows.zip"
