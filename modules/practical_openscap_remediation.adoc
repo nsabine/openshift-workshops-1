@@ -1,0 +1,101 @@
+== Remediation
+
+After reviewing the HTML report we can see that a lot of rules are failing. To put machine into
+compliance we have to perform a so-called “remediation” and in most cases also reboot the machine.
+There are three types of remediation:
+
+=== Online Remediation
+
+In online remediation the fix scripts are executed immediately after evaluation. For each and every rule that has a “fail” result a fix script will be run. Then the rule will be re-evaluated to verify that the machine is now indeed in compliance.
+
+To enable online remediation, use the `--remediate`​ command-line option:
+
+```
+[workshop@serverX ~]$ sudo oscap xccdf eval --remediate --profile xccdf_org.ssgproject.content_profile_rht-ccp --results scan-xccdf-results.xml /usr/share/xml/scap/ssg/content/ssg-rhel7-ds.xml
+```
+
+The output of this command consists of two sections. The first section shows the result of the scan prior to the remediation, and the second section shows the result of the scan after applying the remediation. The second part can contain only fixed and error results. The fixed result indicates that the scan performed after the remediation passed. The error result indicates that even after applying the remediation, the evaluation still does not pass.
+
+=== Offline remediation
+
+Offline remediation allows you to postpone fix execution and perform it outside of the `oscap` evaluation. This allows more flexible workflows. First, the system is only evaluated, and the results are stored in a TestResult element in an XCCDF file:
+
+```
+[workshop@serverX ~]$ oscap xccdf eval --profile xccdf_org.ssgproject.content_profile_rht-ccp --results xccdf-results.xml /usr/share/xml/scap/ssg/content/ssg-rhel7-ds.xml
+```
+
+In this next step, `oscap` generates the fix scripts based on the results of the scan.
+
+```
+[workshop@serverX ~]$ oscap xccdf generate fix --fix-type bash --result-id "" --output my-result-based-remediation.sh xccdf-results.xml
+```
+
+To generate fixes based on a TestResult XCCDF file, we need to know the result-id of TestResult element from the XCCDF file that we would like to use. Using option `--result-id ""`​ is a trick to pick the first TestResult element from results file.
+To get the actual result-ids, you can issue following command:
+
+```
+[workshop@serverX ~]$ oscap info xccdf-results.xml | grep "Result ID"
+Result ID: xccdf_org…ssgproject.content_profile_rht-ccp
+```
+
+===  Profile-based remediation
+
+Another option is to generate a remediation script based on a profile. This will include a fix for every single rule in the profile, regardless or whether it would pass or fail on the target machine. This work well because all fixes are supposed to be idempotent - if you run them repeatedly they won’t do any
+changes to the machine. Profile-based remediation allows very powerful fix deployment using either bash or ansible.
+
+bash:
+```
+[workshop@serverX ~]$ oscap xccdf generate fix --fix-type bash --profile xccdf_org.ssgproject.content_profile_rht-ccp --output my-remediation-script.sh /usr/share/xml/scap/ssg/content/ssg-rhel7-ds.xml
+
+[workshop@serverX ~]$ vi my-remediation-script.sh
+[workshop@serverX ~]$ chmod +x ./my-remediation-script.sh
+[workshop@serverX ~]$ sudo ./my-remediation-script.sh
+```
+
+ansible:
+```
+[workshop@serverX ~]$ oscap xccdf generate fix --fix-type ansible --profile xccdf_org.ssgproject.content_profile_rht-ccp --output my-remediation-playbook.yml /usr/share/xml/scap/ssg/content/ssg-rhel7-ds.xml
+
+[workshop@serverX ~]$ vi my-remediation-playbook.yml
+[workshop@serverX ~]$ sudo ansible-playbook -i "localhost," -c local --check --diff my-remediation-playbook.yml
+
+# once we review the changes and are happy with them
+[workshop@serverX ~]$ sudo ansible-playbook -i "localhost," -c local my-remediation-playbook.yml
+```
+
+You can customize the generate ansible playbook by changing the variables. Looking at the structure of the generated playbook these will be in the beginning of the file:
+
+```
+---
+###############################################################################
+#
+# Ansible remediation role for profile xccdf_org.ssgproject.content_profile_rht-ccp
+# Profile Title:  Red Hat Corporate Profile for Certified Cloud Providers (RH CCP)
+…
+###############################################################################
+ - hosts: all
+   vars:
+      var_selinux_state: enforcing
+      var_selinux_policy_name: targeted
+      var_accounts_password_minlen_login_defs: 6
+      var_accounts_minimum_age_login_defs: 7
+      var_accounts_password_warn_age_login_defs: 7
+      var_password_pam_dcredit: -1
+      var_password_pam_ucredit: -2
+      var_password_pam_ocredit: -2
+      var_password_pam_lcredit: -2
+      var_password_pam_difok: 3
+      sshd_listening_port: 22
+      sshd_idle_timeout_value: 300
+   tasks:
+    - name: "Read permission of GPG key directory"
+      stat:
+        path: /etc/pki/rpm-gpg/
+      register: gpg_key_directory_permission
+      check_mode: no
+      tags:
+…
+```
+
+The advantage of profile-based remediations is their ease of deployment at scale. You can use tools such as Satellite 6 remote execution or Ansible Tower to deploy these playbooks on hundreds of machines at once.
+

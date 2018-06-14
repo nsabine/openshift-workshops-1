@@ -30,3 +30,4 @@ modules:
     - practical_openscap_install
     - practical_openscap_basics
     - practical_openscap_scanning
+    - practical_openscap_remediation
