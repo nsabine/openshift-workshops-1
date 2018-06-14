@@ -27,13 +27,13 @@ This option tells oscap that we want the results stored as an Asset Reporting Fo
 Write HTML report into FILE. You also have to specify a `--results/--results-arf` for this feature to work. This is a human-readable report as opposed to the machine readable ARF.
 --oval-results::
 Generate  OVAL  Result file for each OVAL session used for evaluation. File with name `original-oval-definitions-filename.result.xml` will be generated for each referenced OVAL file. This option (with conjunction with the `--report` option) also enables inclusion of additional OVAL information in the XCCDF report.
-/usr/share/xml/scap/ssg/content/ssg-rhel7-ds.xml ::
+/usr/share/xml/scap/ssg/content/ssg-rhel7-ds.xml::
 This is the `INPUT_FILE` needed to perform the evaluation. Can be XCCDF or Source DataStream. You are strongly encouraged to use Source DataStream instead of plain XCCDF files.
 
 
 The `ssg-rhel7-ds.xml` file which is a Source DataStream with XCCDF 1.2 built inside. The advantage of Source DataStream is that you have everything you need bundled in one file - XCCDF, OVAL(s), CPE(s), and it supports digital signatures. The evaluation process usually takes a few minutes, depending on the number of selected rules.
 
-`oscap` will also provide you an overview of results after it’s finished, and you will find reports saved and available for review in your current working directory.
+`oscap` will also provide you an overview of results after its finished, and you will find reports saved and available for review in your current working directory.
 
 
 ```
@@ -79,8 +79,7 @@ image::images/PRACTICAL_OPENSCAP_EVALUATION_CHARACTERISTICS_IMAGE.png[OpenSCAP R
 - The Rule result breakdown provides a visual on the number of rules passed, failed, and not checked (other).
 - Failed rules by severity breakdown visual is a convenient way to see how many rules failed based on High, Medium, and Low definitions.
 3. Score:
-- Scoring will give points to rules and the XCCDF interpreter will sum the scores of all rules to give a final score to the "compliance" state of the system. This is represented by
-a table outlining the Scoring system used.
+- Scoring will give points to rules and the XCCDF interpreter will sum the scores of all rules to give a final score to the "compliance" state of the system. This is represented by a table outlining the Scoring system used.
 - XCCDF has four scoring models. Each apply computation of XCCDF scores differently.
 * The Default Model: `urn:xccdf:scoring:default`
 * The Flat Model: `urn:xccdf:scoring:flat`
