@@ -109,3 +109,5 @@ practical_openscap_remediation:
   name: Practical OpenSCAP - Remediation
 practical_openscap_vulnerability_scanning:
   name: Practical OpenSCAP - Vulnerability Scanning
+practical_openscap_xccdf_cheatsheet:
+  name: Practical OpenSCAP - XCCDF Rule Cheatsheet

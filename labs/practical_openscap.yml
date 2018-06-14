@@ -32,3 +32,4 @@ modules:
     - practical_openscap_scanning
     - practical_openscap_remediation
     - practical_openscap_vulnerability_scanning
+    - practical_openscap_xccdf_cheatsheet
