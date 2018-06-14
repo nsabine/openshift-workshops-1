@@ -79,7 +79,7 @@ image::images/PRACTICAL_OPENSCAP_EVALUATION_CHARACTERISTICS_IMAGE.png[OpenSCAP R
 - The Rule result breakdown provides a visual on the number of rules passed, failed, and not checked (other).
 - Failed rules by severity breakdown visual is a convenient way to see how many rules failed based on High, Medium, and Low definitions.
 3. Score:
-- Scoring will give points to rules and the XCCDF interpreter will sum the scores of all rules to give a final score to the “compliance” state of the system. This is represented by
+- Scoring will give points to rules and the XCCDF interpreter will sum the scores of all rules to give a final score to the "compliance" state of the system. This is represented by
 a table outlining the Scoring system used.
 - XCCDF has four scoring models. Each apply computation of XCCDF scores differently.
 * The Default Model: `urn:xccdf:scoring:default`
