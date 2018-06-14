@@ -3,7 +3,7 @@
 Install the OpenSCAP scanner and the SCAP Security Guide packages:
 
 ```
-[workshop@serverX ~]$ yum -y install openscap scap-security-guide
+[workshop@serverX ~]$ sudo yum -y install openscap scap-security-guide
 ...
 Dependencies Resolved
 ========================================================================================================
